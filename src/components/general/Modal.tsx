@@ -14,10 +14,6 @@ const BlurryDialog = experimentalStyled(Dialog)<DialogProps>(({}) => ({
   backdropFilter: "blur(10px)",
 }));
 
-const handleClick = () => {
-  console.log("clicked");
-};
-
 export default function BasicDialog({ handleClose, open }: ModalProps) {
   return (
     <BlurryDialog open={open} onClose={handleClose}>

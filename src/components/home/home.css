@@ -1,0 +1,8 @@
+.last-card {
+  background-image: url("/src/assets/flower-2.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.MuiPaper-rounded {
+  border-radius: 20px !important;
+}

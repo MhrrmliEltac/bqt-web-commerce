@@ -8,6 +8,7 @@ import Footer from "./components/footer/Footer";
 import Navbar from "./components/header/Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/pages/Home";
+import Flowers from "./components/MainFlow/flowers/Flowers";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path="password-reset" element={<PasswordReset />} />
             </Route>
             <Route path="/" element={<Home />} />
+            <Route path="/flowers" element={<Flowers />} />
           </Routes>
         </main>
         <Footer />

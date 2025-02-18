@@ -31,9 +31,12 @@ const Footer: React.FC = () => {
       <div className="w-full flex justify-center items-center">
         <div className="flex h-min justify-between items-center w-[90%]">
           <img src={logo} alt="" width={40} height={60} />
-          <div className="flex items-center justify-center gap-4 p-2">
+          <div className="flex items-center justify-end gap-4 w-[15%]">
             {socialMedia.map((social: SocialMedia) => (
-              <div className="bg-white flex justify-center items-center rounded-full w-[40px] h-[40px]">
+              <div
+                className="bg-white flex justify-center items-center rounded-full w-[40px] h-[40px]"
+                key={social.id}
+              >
                 <img src={social.icon} alt="" />
               </div>
             ))}

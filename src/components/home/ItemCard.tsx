@@ -4,11 +4,17 @@ interface CardItem {
   image: string;
 }
 
-const ItemCard = ({ cardItem }: { cardItem: CardItem }) => {
+interface ItemCardProps {
+  cardItem: CardItem;
+  onClick: () => void;
+}
+
+const ItemCard = ({ cardItem, onClick }: ItemCardProps) => {
   return (
     <div
       style={{ backgroundImage: `url(${cardItem.image})` }}
-      className="w-[315px] h-[380px] border rounded-[20px] shadow-md overflow-hidden"
+      className="w-[315px] h-[380px] border rounded-[20px] shadow-md overflow-hidden cursor-pointer"
+      onClick={onClick}
     >
       <div className="w-full h-[380px] flex justify-end flex-col p-[16px] text-xl bg-cover bg-center bg-no-repeat gradient text-white">
         {cardItem.title}

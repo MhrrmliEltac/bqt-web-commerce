@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-center">
           <img src={Logo} alt="" />
         </div>
-        <div className="md:flex gap-5 hidden">
+        <div className="md:flex gap-[50px] hidden">
           <Link to="/">
             <img src={box} alt="" />
           </Link>

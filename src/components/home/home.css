@@ -13,13 +13,17 @@
   object-fit: cover;
 }
 
-.swiper-container {
-  height: 300px !important;
-  border-radius: 20px !important;
-  margin: 60px 0;
+.firstSwiper {
+  margin: 50px 0px;
+  width: 100%;
 }
 
-.swiper-wrapper {
+.firstSwiper > .swiper {
+  height: 300px !important;
+  width: 100%;
+}
+
+.swiper {
   border-radius: 20px;
 }
 

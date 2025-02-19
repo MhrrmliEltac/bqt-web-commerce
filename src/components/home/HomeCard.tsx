@@ -12,25 +12,25 @@ const cardItem: cardItemType[] = [
   {
     id: 1,
     title: "Flowers & Bouquets",
-    image: "/src/assets/flower.svg",
+    image: "../../assets/flower.svg",
     url: "/flowers",
   },
   {
     id: 2,
     title: "Cakes & Pastries",
-    image: "/src/assets/cake.svg",
+    image: "../../assets/cake.svg",
     url: "/cakes",
   },
   {
     id: 3,
     title: "Premium Chocolates",
-    image: "/src/assets/chocolate.svg",
+    image: "../../assets/chocolate.svg",
     url: "/chocolates",
   },
   {
     id: 4,
     title: "Potted Plants",
-    image: "/src/assets/plant.svg",
+    image: "../../assets/plant.svg",
     url: "/plants",
   },
 ];

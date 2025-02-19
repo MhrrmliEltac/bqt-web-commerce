@@ -24,13 +24,20 @@ const ItemCard = ({ cardItem, onClick }: ItemCardProps) => {
       animate="animate"
       whileHover="hover"
       variants={cardVariants}
-      style={{ backgroundImage: `url(${cardItem.image})` }}
-      className="h-[380px] border rounded-[20px] shadow-md overflow-hidden cursor-pointer bg-cover bg-center"
+      className="h-[380px] border rounded-[20px] overflow-hidden cursor-pointer relative"
       onClick={onClick}
     >
-      <div className="w-full h-full flex justify-end flex-col p-4 text-xl text-white">
+      <div className="absolute h-full object-cover w-full z-0">
+        <img
+          src={cardItem.image}
+          alt=""
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="w-full h-full flex justify-end flex-col p-4 text-xl text-white relative shadow-lg z-20">
         {cardItem.title}
       </div>
+      <div className="gradient absolute h-full w-full z-10 top-0"></div>
     </motion.div>
   );
 };

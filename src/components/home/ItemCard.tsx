@@ -11,33 +11,43 @@ interface ItemCardProps {
   onClick: () => void;
 }
 
-const cardVariants = {
-  initial: { width: "20%", x: "-100%", transition: { duration: 0.5 } },
-  hover: { width: "33%", transition: { duration: 0.5 } },
-  animate: { width: "20%", x: "0%", transition: { duration: 1 } },
+const imgVariant = {
+  initial: { scale: 1.1, transition: { duration: 0.6 } },
+  hover: { scale: 1.2, transition: { duration: 0.6 } },
+};
+
+const textVariant = {
+  initial: { opacity: 1, transition: { duration: 0.3 } },
+  hover: { opacity: 0, transition: { duration: 0.3 } },
 };
 
 const ItemCard = ({ cardItem, onClick }: ItemCardProps) => {
   return (
     <motion.div
-      initial="initial"
-      animate="animate"
-      whileHover="hover"
-      variants={cardVariants}
-      className="h-[380px] border rounded-[20px] overflow-hidden cursor-pointer relative"
+      className="relative duration-300 shadow-lg hover:shadow-2xl rounded-[30px] lg:aspect-[315/380] md:aspect-[950/380] overflow-hidden cursor-pointer"
       onClick={onClick}
+      initial="initial"
+      whileHover="hover"
     >
-      <div className="absolute h-full object-cover w-full z-0">
-        <img
+      <div className="absolute inset-0">
+        <motion.img
+          variants={imgVariant}
           src={cardItem.image}
-          alt=""
-          className="h-full w-full object-cover"
+          alt={cardItem.title}
+          className="w-full h-full object-cover"
         />
+        <motion.div
+          className="absolute inset-0 bg-black/50 backdrop-blur-md"
+          variants={textVariant}
+        ></motion.div>
       </div>
-      <div className="w-full h-full flex justify-end flex-col p-4 text-xl text-white relative shadow-lg z-20">
-        {cardItem.title}
-      </div>
-      <div className="gradient absolute h-full w-full z-10 top-0"></div>
+
+      <motion.div
+        className="relative z-10 flex items-center justify-center h-full text-white text-center font-bold text-xl md:text-3xl px-6"
+        variants={textVariant}
+      >
+        <p>{cardItem.title}</p>
+      </motion.div>
     </motion.div>
   );
 };

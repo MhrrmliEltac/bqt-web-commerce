@@ -1,57 +1,42 @@
 import { useNavigate } from "react-router";
 import ItemCard from "./ItemCard";
-import plant from "../../../public/plant.svg";
-import cake from "../../../public/cake.svg";
-import chocolate from "../../../public/chocolate.svg";
-import flower from "../../../public/flower.svg";
 
-type cardItemType = {
-  id: number;
-  title: string;
-  image: string;
-  url: string;
-};
-
-const cardItem: cardItemType[] = [
+const cardItem = [
   {
     id: 1,
     title: "Flowers & Bouquets",
-    image: flower,
+    image: "/flower.svg",
     url: "/flowers",
   },
   {
     id: 2,
     title: "Cakes & Pastries",
-    image: cake,
+    image: "/cake.svg",
     url: "/cakes",
   },
   {
     id: 3,
     title: "Premium Chocolates",
-    image: chocolate,
+    image: "/chocolate.svg",
     url: "/chocolates",
   },
   {
     id: 4,
     title: "Potted Plants",
-    image: plant,
+    image: "/plant.svg",
     url: "/plants",
   },
 ];
 
 const HomeCard = () => {
   const navigate = useNavigate();
-  const navigateTo = (path: string) => {
-    navigate(path);
-  };
-
   return (
-    <div className="flex justify-between flex-wrap w-full">
-      {cardItem.map((item: cardItemType) => (
+    <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 w-full gap-5 p-4">
+      {cardItem.map((item) => (
         <ItemCard
           key={item.id}
           cardItem={item}
-          onClick={() => navigateTo(item.url)}
+          onClick={() => navigate(item.url)}
         />
       ))}
     </div>

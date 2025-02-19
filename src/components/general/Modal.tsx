@@ -4,7 +4,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import Button from "./Button";
 import "../home/home.css";
-import { motion } from "framer-motion";
 
 interface ModalProps {
   open: boolean;

@@ -14,7 +14,7 @@ function App() {
   return (
     <Router>
       <div className="bg-[#F5EFE9] min-h-screen flex flex-col font-kodchasan">
-        <main className="w-[90%] mx-auto flex-grow max-w-[1920px]">
+        <main className="w-[90%] mx-auto flex-grow max-w-[1164px]">
           <Navbar />
           <Routes>
             <Route element={<AuthLayout />}>

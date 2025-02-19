@@ -44,7 +44,7 @@ const FlowerHeader = () => {
         </select>
         <FilterDialog open={open} handleClose={handleClose} />
       </div>
-      <div className="flex items-center gap-3 text-[24px] text-[#2C4B42] md:w-[20%]">
+      <div className="flex items-center gap-3 text-[24px] text-[#2C4B42]">
         <img src={mask} alt="" />
         <h1>Flowers & Bouquets</h1>
       </div>

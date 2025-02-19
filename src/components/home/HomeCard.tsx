@@ -42,7 +42,7 @@ const HomeCard = () => {
   };
 
   return (
-    <div className="flex justify-center gap-5 flex-wrap">
+    <div className="flex justify-between flex-wrap w-full">
       {cardItem.map((item: cardItemType) => (
         <ItemCard
           key={item.id}

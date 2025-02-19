@@ -93,6 +93,7 @@ const HomeCard = () => {
                 src={item.image}
                 alt={item.title}
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
               <motion.div
                 className="absolute inset-0 bg-black/50 backdrop-blur-md"

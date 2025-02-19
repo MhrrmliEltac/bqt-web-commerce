@@ -21,9 +21,6 @@
 .firstSwiper > .swiper {
   height: 300px !important;
   width: 100%;
-}
-
-.swiper {
   border-radius: 20px;
 }
 

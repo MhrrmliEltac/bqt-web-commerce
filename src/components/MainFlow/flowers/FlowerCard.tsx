@@ -18,8 +18,6 @@ const FlowerCard = ({ flower }: { flower: FlowerCardProps }) => {
     setIcon(!icon);
   };
 
-  const handleClickasd = () => {};
-
   return (
     <div className="w-full h-full rounded-[20px] bg-[#FFF9F3] transition-shadow duration-300 hover:shadow-[0px_4px_6px_0px_rgba(0,0,0,0.13)] cursor-pointer">
       <div className="relative">

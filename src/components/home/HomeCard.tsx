@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router";
 import ItemCard from "./ItemCard";
+import plant from "../../../public/plant.svg";
+import cake from "../../../public/cake.svg";
+import chocolate from "../../../public/chocolate.svg";
+import flower from "../../../public/flower.svg";
 
 type cardItemType = {
   id: number;
@@ -12,25 +16,25 @@ const cardItem: cardItemType[] = [
   {
     id: 1,
     title: "Flowers & Bouquets",
-    image: "../../assets/flower.svg",
+    image: flower,
     url: "/flowers",
   },
   {
     id: 2,
     title: "Cakes & Pastries",
-    image: "../../assets/cake.svg",
+    image: cake,
     url: "/cakes",
   },
   {
     id: 3,
     title: "Premium Chocolates",
-    image: "../../assets/chocolate.svg",
+    image: chocolate,
     url: "/chocolates",
   },
   {
     id: 4,
     title: "Potted Plants",
-    image: "../../assets/plant.svg",
+    image: plant,
     url: "/plants",
   },
 ];

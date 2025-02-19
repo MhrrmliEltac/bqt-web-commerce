@@ -43,7 +43,7 @@ const Slider = () => {
       variants={sliderMotion}
       initial="hidden"
       animate="visible"
-      className="swiper-container swiper-wrapper"
+      className="firstSwiper"
     >
       <Swiper
         slidesPerView={1}

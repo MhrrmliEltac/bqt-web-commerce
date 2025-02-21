@@ -2,7 +2,6 @@ import { useState } from "react";
 import favorite from "../../../assets/favorite.svg";
 import favoriteFill from "../../../assets/favorite-fill.svg";
 import { motion } from "framer-motion";
-import "./flower.css";
 import { useNavigate } from "react-router-dom";
 
 interface FlowerCardProps {

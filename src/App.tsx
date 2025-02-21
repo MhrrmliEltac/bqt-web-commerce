@@ -14,6 +14,7 @@ import FlowerDetail from "./components/MainFlow/flowerDetail/FlowerDetail";
 import OrderLayout from "./components/order/OrderLayout";
 import Order from "./components/pages/Order";
 import Favorite from "./components/pages/Favorite";
+import Cart from "./components/cart/Cart";
 
 function App() {
   return (
@@ -38,6 +39,8 @@ function App() {
             </Route>
 
             <Route path="/wishlist" element={<Favorite />} />
+            <Route path="*" element={<h1>Not Found</h1>} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </Suspense>
       </main>

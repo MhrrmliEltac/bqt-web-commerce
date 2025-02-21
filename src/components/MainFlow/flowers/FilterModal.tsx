@@ -1,4 +1,5 @@
-import { Box, DialogTitle, Slider, styled } from "@mui/material";
+import { Box, DialogTitle, Slider } from "@mui/material";
+import styled from "@emotion/styled";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -27,13 +28,51 @@ const colors: liItem[] = [
   { id: 7, color: "#E34141" },
 ];
 
-const BlurryDialog = styled(Dialog)(({}) => ({
+const BlurryDialog = styled(Dialog)({
   backdropFilter: "blur(10px)",
+});
+
+const CheckboxLabel = styled.label({
+  display: "flex",
+  alignItems: "center",
+  cursor: "pointer",
+  position: "relative",
+  gap: "8px",
+});
+
+const CheckboxInput = styled.input({
+  appearance: "none",
+  position: "absolute",
+  opacity: 0,
+  pointerEvents: "none",
+});
+
+const CheckboxSpan = styled.span<{ checked: boolean }>((props) => ({
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "20px",
+  height: "20px",
+  border: "2px solid #2C4B42",
+  borderRadius: "4px",
+  position: "relative",
+  transition: "background-color 0.2s, border-color 0.2s",
+  backgroundColor: props.checked ? "#2C4B42" : "transparent",
+  color: props.checked ? "#fff" : "transparent",
+
+  "&::after": {
+    content: props.checked ? '"✓"' : '""',
+    fontSize: "14px",
+    fontWeight: "bold",
+  },
 }));
 
 export default function FilterModal({ handleClose, open }: ModalProps) {
   const [selectedColor, setSelectedColor] = useState<number | null>(null);
   const [displayValue, setValue] = useState<number[]>([10, 550]);
+  const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>(
+    {}
+  );
 
   const handleBorder = (id: number) => {
     setSelectedColor(id);
@@ -41,6 +80,13 @@ export default function FilterModal({ handleClose, open }: ModalProps) {
 
   const handleChange = (_: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
+  };
+
+  const handleCheckboxChange = (type: string) => {
+    setCheckedItems((prev) => ({
+      ...prev,
+      [type]: !prev[type],
+    }));
   };
 
   return (
@@ -53,13 +99,17 @@ export default function FilterModal({ handleClose, open }: ModalProps) {
         <DialogContent>
           <ul className="flex gap-5 items-center flex-wrap">
             {["Birthday", "Wedding", "Anniversary", "Date", "Theater"].map(
-              (type, index) => (
-                <li key={index} className="flex gap-2 items-center text-[15px]">
-                  <label className="cl-checkbox flex items-center justify-center">
-                    <input type="checkbox" />
-                    <span></span>
+              (type) => (
+                <li key={type} className="flex gap-4 items-center text-[15px]">
+                  <CheckboxLabel>
+                    <CheckboxInput
+                      type="checkbox"
+                      checked={checkedItems[type] || false}
+                      onChange={() => handleCheckboxChange(type)}
+                    />
+                    <CheckboxSpan checked={checkedItems[type] || false} />
                     {type}
-                  </label>
+                  </CheckboxLabel>
                 </li>
               )
             )}
@@ -100,11 +150,8 @@ export default function FilterModal({ handleClose, open }: ModalProps) {
             <Box
               sx={{
                 borderRadius: "12px",
-                backgroundColor: "whitef",
-                color: "#2C4B42",
-                padding: "5px 10px",
                 border: "1px solid #B9B9B9",
-                fontFamily: "Kodchasan, sans-serif",
+                padding: "5px 10px",
               }}
             >
               <NumberFlow value={displayValue[0]} /> ₼
@@ -112,18 +159,14 @@ export default function FilterModal({ handleClose, open }: ModalProps) {
             <Box
               sx={{
                 borderRadius: "12px",
-                backgroundColor: "whitef",
-                color: "#2C4B42",
-                padding: "5px 10px",
                 border: "1px solid #B9B9B9",
-                fontFamily: "Kodchasan, sans-serif",
+                padding: "5px 10px",
               }}
             >
               <NumberFlow value={displayValue[1]} /> <span>₼</span>
             </Box>
           </Box>
         </DialogContent>
-
         <DialogActions>
           <Button onClick={() => {}} buttonName="Apply" />
         </DialogActions>

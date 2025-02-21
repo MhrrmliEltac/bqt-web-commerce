@@ -83,9 +83,7 @@ const FlowerDetail = () => {
                 key={tulpan.id}
                 src={tulpan.image}
                 alt="tulpan"
-                width={80}
-                height={70}
-                className={`object-cover shadow rounded-[15px] transition-all duration-500 ${
+                className={`object-cover shadow rounded-[15px] md:w-[80px] md:h-[80px] w-[100px] h-[100px] transition-all duration-500 ${
                   active === tulpan.id
                     ? "border-2 border-[#2C4B42] scale-105"
                     : "border-none"
@@ -105,7 +103,7 @@ const FlowerDetail = () => {
             <motion.img
               src={tulpanImageId}
               alt="Selected Flower"
-              className="h-full rounded-[20px] w-full"
+              className="h-full rounded-[20px] w-full md:min-h-[300px]"
             />
             <motion.div
               whileTap={{ scale: 1.1 }}

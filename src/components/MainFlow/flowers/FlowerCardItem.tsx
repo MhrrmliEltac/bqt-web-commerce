@@ -2,7 +2,6 @@ import Tulip from "../../../assets/Tulip.svg";
 import Rose from "../../../assets/Rose.svg";
 import Sunflower from "../../../assets/Sunflowr.svg";
 import { motion } from "framer-motion";
-import "./flower.css";
 import FlowerCard from "./FlowerCard";
 
 interface FlowerCardItemProps {

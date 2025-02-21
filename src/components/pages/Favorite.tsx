@@ -4,6 +4,9 @@ import Tulip from "../../assets/Tulip.svg";
 import Rose from "../../assets/Rose.svg";
 import Sunflower from "../../assets/Sunflowr.svg";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import NotFound from "./NotFound";
+import favorite from "../../assets/favorite.svg";
 
 interface flowerType {
   id: number;
@@ -19,6 +22,7 @@ const flower: flowerType[] = [
 ];
 
 const Favorite = () => {
+  const [flowerData] = useState<flowerType[]>(flower);
   const fadeInAnimationVariants = {
     initial: {
       opacity: 0,
@@ -45,24 +49,30 @@ const Favorite = () => {
       animate="animate"
       className="flex flex-col"
     >
-      <Heading name="Favourites" />
-      <div className="grid grid-rows-1 grid-cols-4 gap-7 my-5">
-        {flower.map((item: flowerType) => (
-          <motion.div
-            key={item.id}
-            className="w-full h-full rounded-[20px] bg-[#FFF9F3] transition-shadow duration-300 hover:shadow-[0px_4px_6px_0px_rgba(0,0,0,0.13)] cursor-pointer"
-            variants={fadeInAnimationVariants}
-            initial="initial"
-            whileInView="animate"
-            viewport={{
-              once: true,
-            }}
-            custom={item.id}
-          >
-            <FlowerCard flower={item} />
-          </motion.div>
-        ))}
-      </div>
+      {flowerData.length > 0 && flowerData ? (
+        <>
+          <Heading name="Favourites" />
+          <div className="grid grid-rows-1 grid-cols-4 gap-7 my-5">
+            {flowerData.map((item: flowerType) => (
+              <motion.div
+                key={item.id}
+                className="w-full h-full rounded-[20px] bg-[#FFF9F3] transition-shadow duration-300 hover:shadow-[0px_4px_6px_0px_rgba(0,0,0,0.13)] cursor-pointer"
+                variants={fadeInAnimationVariants}
+                initial="initial"
+                whileInView="animate"
+                viewport={{
+                  once: true,
+                }}
+                custom={item.id}
+              >
+                <FlowerCard flower={item} />
+              </motion.div>
+            ))}
+          </div>
+        </>
+      ) : (
+        <NotFound text="Wishlist" image={favorite} />
+      )}
     </motion.section>
   );
 };

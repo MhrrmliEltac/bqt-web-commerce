@@ -90,7 +90,7 @@ const Navbar: React.FC = () => {
               Seçilmişlər
             </div>
           </Link>
-          <Link to="/" className="relative group box-link">
+          <Link to="/cart" className="relative group box-link">
             <motion.div whileHover={{ scale: 1.1 }} className="relative">
               <img src={basket} alt="" />
               <span className="absolute -top-3 -right-2 border-2 border-white rounded-full bg-[#2C4B42] flex justify-center items-center w-6 h-6 text-white">

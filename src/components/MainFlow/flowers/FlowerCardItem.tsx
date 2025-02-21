@@ -37,7 +37,7 @@ const FlowerCardItem = () => {
 
   return (
     <div className="mt-[60px] grid grid-cols-4 max-xl:grid-cols-4 max-lg:grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-2 gap-x-[20px] gap-y-[30px]">
-      {flower.map((flower: FlowerCardItemProps) => (
+      {flower?.map((flower: FlowerCardItemProps) => (
         <motion.div
           key={flower.id}
           className="w-full h-full rounded-[20px] bg-[#FFF9F3] transition-shadow duration-300 hover:shadow-[0px_4px_6px_0px_rgba(0,0,0,0.13)] cursor-pointer"

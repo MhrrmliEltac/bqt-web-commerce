@@ -118,7 +118,7 @@ export default function FilterModal({ handleClose, open }: ModalProps) {
         <DialogTitle sx={{ fontSize: "20px" }}>Colors</DialogTitle>
         <DialogContent>
           <ul className="flex gap-3 items-center flex-wrap">
-            {colors.map((color) => (
+            {colors?.map((color) => (
               <li
                 key={color.id}
                 onClick={() => handleBorder(color.id)}

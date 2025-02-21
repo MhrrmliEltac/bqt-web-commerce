@@ -78,7 +78,7 @@ const HomeCard = () => {
       initial="hidden"
       animate="visible"
     >
-      {cardItem.map((item: cardItemType) => (
+      {cardItem?.map((item: cardItemType) => (
         <motion.div variants={childVariant} key={item.id}>
           <motion.div
             className="relative duration-300 shadow-lg hover:shadow-2xl rounded-[30px] lg:aspect-[315/380] aspect-[950/380] overflow-hidden cursor-pointer"

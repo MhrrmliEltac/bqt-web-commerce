@@ -85,7 +85,7 @@ const Cart = () => {
           <div className="grid grid-rows-1 md:grid-cols-2 gap-2 my-5">
             <div className="cols-span-1">
               <AnimatePresence>
-                {cartItem.map((item) => (
+                {cartItem?.map((item) => (
                   <motion.div
                     exit={{ opacity: 0, transition: { duration: 0.2 } }}
                     key={item.id}

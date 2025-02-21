@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
             <img src={logo} alt="" width={40} height={60} />
           </div>
           <div className="flex items-center justify-end gap-4 w-[20%]">
-            {socialMedia.map((social: SocialMedia) => (
+            {socialMedia?.map((social: SocialMedia) => (
               <motion.div
                 className="bg-white flex justify-center items-center rounded-full w-[40px] h-[40px] cursor-pointer"
                 key={social.id}

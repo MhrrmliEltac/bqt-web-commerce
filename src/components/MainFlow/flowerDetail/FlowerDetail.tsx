@@ -76,7 +76,7 @@ const FlowerDetail = () => {
       <div className="grid grid-rows-1 md:grid-cols-2 grid-cols-1 gap-4 lg:h-full md:h-[330px]">
         <div className="md:grid md:grid-rows-1 md:grid-cols-10 flex flex-col-reverse gap-2">
           <div className="w-full overflow-auto gap-5 md:col-span-2 col-span-10 flex md:flex-col cursor-pointer">
-            {tulpanImage.map((tulpan: tulpanImageType) => (
+            {tulpanImage?.map((tulpan: tulpanImageType) => (
               <motion.img
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -135,7 +135,7 @@ const FlowerDetail = () => {
             non auctor diam. Ut at vestibulum magna.
           </div>
           <ul className="flex gap-3 items-center flex-wrap">
-            {colors.map((color) => (
+            {colors?.map((color) => (
               <li
                 key={color.id}
                 onClick={() => handleBorder(color.id)}

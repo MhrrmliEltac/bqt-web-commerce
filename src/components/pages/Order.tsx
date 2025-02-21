@@ -93,7 +93,7 @@ const Order = () => {
                 {activeTab === "active" ? (
                   <div className="text-[#2C4B42]">
                     <div>📌 Active Orders List</div>
-                    {orderData.map((order: orderType) => (
+                    {orderData?.map((order: orderType) => (
                       <div
                         key={order.id}
                         className="w-full md:grid md:grid-rows-1 gap-5 my-5 md:grid-cols-2  py-4 px-4 rounded-[20px] order-shadow bg-[#FFF9F3]"
@@ -116,7 +116,7 @@ const Order = () => {
                 ) : (
                   <div>
                     <div>✅ Completed Orders List</div>
-                    {completedOrder.map((complete: orderType) => (
+                    {completedOrder?.map((complete: orderType) => (
                       <div
                         key={complete.id}
                         className="w-full md:grid md:grid-rows-1 gap-5 my-5 md:grid-cols-2 py-4 px-4 rounded-[20px] order-shadow bg-[#FFF9F3]"

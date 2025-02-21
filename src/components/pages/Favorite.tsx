@@ -53,7 +53,7 @@ const Favorite = () => {
         <>
           <Heading name="Favourites" />
           <div className="grid grid-rows-1 grid-cols-4 gap-7 my-5">
-            {flowerData.map((item: flowerType) => (
+            {flowerData?.map((item: flowerType) => (
               <motion.div
                 key={item.id}
                 className="w-full h-full rounded-[20px] bg-[#FFF9F3] transition-shadow duration-300 hover:shadow-[0px_4px_6px_0px_rgba(0,0,0,0.13)] cursor-pointer"

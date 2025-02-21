@@ -51,7 +51,7 @@ const Slider = () => {
         modules={[Pagination]}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
       >
-        {slider.map((slide: sliderType) => (
+        {slider?.map((slide: sliderType) => (
           <SwiperSlide key={slide.id}>
             <img
               src={slide.image}

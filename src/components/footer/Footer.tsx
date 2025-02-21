@@ -37,7 +37,9 @@ const Footer: React.FC = () => {
     <footer className="bg-[#2C4B42] w-full h-[137px] flex items-center justify-center">
       <div className="w-full flex justify-center items-center max-w-[1164px]">
         <div className="flex h-min justify-between items-center w-[100%]">
-          <img src={logo} alt="" width={40} height={60} />
+          <div>
+            <img src={logo} alt="" width={40} height={60} />
+          </div>
           <div className="flex items-center justify-end gap-4 w-[20%]">
             {socialMedia.map((social: SocialMedia) => (
               <motion.div

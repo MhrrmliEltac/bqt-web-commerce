@@ -1,8 +1,10 @@
 import filter from "../../../assets/solar_filter-broken.svg";
 import mask from "../../../assets/MaskGroup.svg";
+import arrowDown from "../../../assets/Vector.svg";
 import search from "../../../assets/search-icon.svg";
 import FilterDialog from "./FilterModal";
 import { useState } from "react";
+import Select from "../../general/Select";
 
 const FlowerHeader = () => {
   const [open, setOpen] = useState(false);
@@ -24,24 +26,8 @@ const FlowerHeader = () => {
           onClick={handleOpen}
           className="cursor-pointer"
         />
-        <select
-          name="language"
-          id="language"
-          className="bg-transparent text-[18px] font-[400] text-[#2C4B42] outline-none border-none custom-select"
-        >
-          <option value="all-category">All categories</option>
-          <option value="English">English</option>
-          <option value="English">English</option>
-        </select>
-        <select
-          name="language"
-          id="language"
-          className="bg-transparent text-[18px] font-[400] text-[#2C4B42] outline-none border-none custom-select"
-        >
-          <option value="popular">Popular first</option>
-          <option value="English">English</option>
-          <option value="English">English</option>
-        </select>
+        <Select name="All categories" show={false} arrowDownType={arrowDown} />
+        <Select name="Popular firt" show={false} arrowDownType={arrowDown} />
         <FilterDialog open={open} handleClose={handleClose} />
       </div>
       <div className="flex items-center gap-3 text-[24px] text-[#2C4B42]">

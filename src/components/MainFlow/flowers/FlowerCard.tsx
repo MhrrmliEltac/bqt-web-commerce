@@ -3,6 +3,7 @@ import favorite from "../../../assets/favorite.svg";
 import favoriteFill from "../../../assets/favorite-fill.svg";
 import { motion } from "framer-motion";
 import "./flower.css";
+import { useNavigate } from "react-router-dom";
 
 interface FlowerCardProps {
   id: number;
@@ -13,13 +14,17 @@ interface FlowerCardProps {
 
 const FlowerCard = ({ flower }: { flower: FlowerCardProps }) => {
   const [icon, setIcon] = useState(false);
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setIcon(!icon);
   };
 
   return (
-    <div className="w-full h-full rounded-[20px] bg-[#FFF9F3] transition-shadow duration-300 hover:shadow-[0px_4px_6px_0px_rgba(0,0,0,0.13)] cursor-pointer">
+    <div
+      className="w-full h-full rounded-[20px] bg-[#FFF9F3] transition-shadow duration-300 hover:shadow-[0px_4px_6px_0px_rgba(0,0,0,0.13)] cursor-pointer"
+      onClick={() => navigate(`/flower/${flower.id}`)}
+    >
       <div className="relative">
         <motion.div
           whileTap={{ scale: 0.9 }}

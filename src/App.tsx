@@ -9,13 +9,18 @@ import Navbar from "./components/header/Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/pages/Home";
 import Flowers from "./components/MainFlow/flowers/Flowers";
+import { Suspense } from "react";
+import FlowerDetail from "./components/MainFlow/flowerDetail/FlowerDetail";
+import OrderLayout from "./components/order/OrderLayout";
+import Order from "./components/pages/Order";
+import Favorite from "./components/pages/Favorite";
 
 function App() {
   return (
     <Router>
-      <div className="bg-[#F5EFE9] min-h-screen flex flex-col font-kodchasan">
-        <main className="w-[90%] mx-auto flex-grow max-w-[1164px]">
-          <Navbar />
+      <main className="w-[90%] mx-auto flex-1 max-w-[1164px] min-h-[calc(100vh-84px)]">
+        <Navbar />
+        <Suspense fallback={<p>Loading...</p>}>
           <Routes>
             <Route element={<AuthLayout />}>
               <Route path="login" element={<Login />} />
@@ -23,12 +28,20 @@ function App() {
               <Route path="verification" element={<Verification />} />
               <Route path="password-reset" element={<PasswordReset />} />
             </Route>
+
             <Route path="/" element={<Home />} />
-            <Route path="/flowers" element={<Flowers />} />
+            <Route path="/flower" element={<Flowers />} />
+            <Route path="/flower/:id" element={<FlowerDetail />} />
+
+            <Route element={<OrderLayout />}>
+              <Route path="orders" element={<Order />} />
+            </Route>
+
+            <Route path="/wishlist" element={<Favorite />} />
           </Routes>
-        </main>
-        <Footer />
-      </div>
+        </Suspense>
+      </main>
+      <Footer />
     </Router>
   );
 }

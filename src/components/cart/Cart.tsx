@@ -45,10 +45,11 @@ const Cart = () => {
   const [cartItem, setCartItem] = useState<CartType[]>(cartData);
 
   const increaseFunc = (id: number) => {
-    setCartCount((prev) => ({
-      ...prev,
-      [id]: prev[id] + 1,
-    }));
+    cartCount[id] < 10 &&
+      setCartCount((prev) => ({
+        ...prev,
+        [id]: prev[id] + 1,
+      }));
   };
 
   const decreaseFunc = (id: number) => {

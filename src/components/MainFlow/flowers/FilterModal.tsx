@@ -1,4 +1,4 @@
-import { Box, DialogTitle, Slider, useMediaQuery } from "@mui/material";
+import { Box, DialogTitle, Slider } from "@mui/material";
 import styled from "@emotion/styled";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -55,11 +55,8 @@ const CheckboxSpan = styled.span<{ checked: boolean }>((props) => ({
   height: "20px",
   border: "2px solid #2C4B42",
   borderRadius: "4px",
-  position: "relative",
-  transition: "background-color 0.2s, border-color 0.2s",
   backgroundColor: props.checked ? "#2C4B42" : "transparent",
   color: props.checked ? "#fff" : "transparent",
-
   "&::after": {
     content: props.checked ? '"✓"' : '""',
     fontSize: "14px",
@@ -68,7 +65,6 @@ const CheckboxSpan = styled.span<{ checked: boolean }>((props) => ({
 }));
 
 export default function FilterModal({ handleClose, open }: ModalProps) {
-  const isMobile = useMediaQuery("max-width:500px");
   const [selectedColor, setSelectedColor] = useState<number | null>(null);
   const [displayValue, setValue] = useState<number[]>([10, 550]);
   const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>(
@@ -76,7 +72,7 @@ export default function FilterModal({ handleClose, open }: ModalProps) {
   );
 
   const handleBorder = (id: number) => {
-    setSelectedColor(id);
+    setSelectedColor(selectedColor === id ? null : id);
   };
 
   const handleChange = (_: Event, newValue: number | number[]) => {
@@ -91,21 +87,20 @@ export default function FilterModal({ handleClose, open }: ModalProps) {
   };
 
   return (
-    <BlurryDialog open={open} onClose={handleClose}>
+    <BlurryDialog open={open} onClose={handleClose} fullWidth>
       <div className="text-center text-[20px] my-5">
         <Heading name="Filter" />
       </div>
       <Box
         sx={{
-          width: isMobile ? "100%" : "440px",
+          width: "100%",
           color: "#2C4B42",
           display: "flex",
           flexDirection: "column",
-          flexWrap: "wrap",
         }}
       >
-        <DialogTitle sx={{ fontSize: "20px", width: "100%" }}>Type</DialogTitle>
-        <DialogContent sx={{ width: isMobile ? "60%" : "100%" }}>
+        <DialogTitle sx={{ fontSize: "20px" }}>Type</DialogTitle>
+        <DialogContent>
           <ul className="flex gap-5 items-center flex-wrap">
             {["Birthday", "Wedding", "Anniversary", "Date", "Theater"].map(
               (type) => (
@@ -124,32 +119,27 @@ export default function FilterModal({ handleClose, open }: ModalProps) {
             )}
           </ul>
         </DialogContent>
-        <DialogTitle sx={{ fontSize: "20px", width: "100%" }}>
-          Colors
-        </DialogTitle>
-        <DialogContent sx={{ width: isMobile ? "60%" : "100%" }}>
+        <DialogTitle sx={{ fontSize: "20px" }}>Colors</DialogTitle>
+        <DialogContent>
           <ul className="flex gap-3 items-center flex-wrap">
-            {colors?.map((color) => (
+            {colors.map((color) => (
               <li
                 key={color.id}
                 onClick={() => handleBorder(color.id)}
                 style={{
                   backgroundColor: color.color,
-                  transition: "border 0.1s ease",
-                  borderWidth: selectedColor === color.id ? 2 : 0,
-                  borderColor:
-                    selectedColor === color.id ? "#2C4B42" : "transparent",
+                  border:
+                    selectedColor === color.id ? "2px solid #2C4B42" : "none",
+                  opacity: selectedColor === color.id ? 0.7 : 1,
                 }}
                 className="rounded-full w-6 h-6 shadow-sm cursor-pointer hover:opacity-90 transition-opacity duration-200"
               ></li>
             ))}
           </ul>
         </DialogContent>
-        <DialogTitle sx={{ fontSize: "20px", width: "100%" }}>
-          Price range
-        </DialogTitle>
+        <DialogTitle sx={{ fontSize: "20px" }}>Price range</DialogTitle>
         <DialogContent>
-          <Box sx={{ width: "100%", color: "#2C4B42" }}>
+          <Box sx={{ width: "100%" }}>
             <Slider
               value={displayValue}
               sx={{ color: "#2C4B42" }}
@@ -160,23 +150,11 @@ export default function FilterModal({ handleClose, open }: ModalProps) {
             />
           </Box>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Box
-              sx={{
-                borderRadius: "12px",
-                border: "1px solid #B9B9B9",
-                padding: "5px 10px",
-              }}
-            >
+            <Box className="rounded-lg border p-2 border-gray-400">
               <NumberFlow value={displayValue[0]} /> ₼
             </Box>
-            <Box
-              sx={{
-                borderRadius: "12px",
-                border: "1px solid #B9B9B9",
-                padding: "5px 10px",
-              }}
-            >
-              <NumberFlow value={displayValue[1]} /> <span>₼</span>
+            <Box className="rounded-lg border p-2 border-gray-400">
+              <NumberFlow value={displayValue[1]} /> ₼
             </Box>
           </Box>
         </DialogContent>

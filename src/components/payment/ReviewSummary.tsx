@@ -102,6 +102,7 @@ const ReviewSummary = () => {
           padding: "10px 15px",
           fontSize: "14px",
           fontWeight: "500",
+          fontFamily: "Kodchasan sans-serif",
         },
       });
     } else {
@@ -122,6 +123,7 @@ const ReviewSummary = () => {
           padding: "10px 15px",
           fontSize: "14px",
           fontWeight: "500",
+          fontFamily: "Kodchasan sans-serif",
         },
       });
     }

@@ -3,7 +3,7 @@ import Heading from "../general/Heading";
 import eye from "../../assets/solar_eye-linear.svg";
 import Button from "../general/Button";
 import "../general/general.css";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const Register: React.FC = () => {
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {

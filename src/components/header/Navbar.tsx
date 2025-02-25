@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Group from "../../assets/Group.svg";
 import Logo from "../../assets/bqt 2.svg";
 import arrowDown from "../../assets/Vector.svg";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import favorite from "../../assets/favorite.svg";
 import user from "../../assets/solar_user-broken.svg";
 import basket from "../../assets/basket.svg";

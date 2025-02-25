@@ -75,7 +75,7 @@ const FlowerDetail = () => {
     <section className="min-h-[calc(100vh-200px)] md:mb-48 mb-3">
       <div className="grid grid-rows-1 md:grid-cols-2 grid-cols-1 gap-4 lg:h-full md:h-[330px]">
         <div className="md:grid md:grid-rows-1 md:grid-cols-10 flex flex-col-reverse gap-2">
-          <div className="w-full overflow-auto gap-5 md:col-span-2 col-span-10 flex md:flex-col cursor-pointer">
+          <div className="w-full overflow-auto md:gap-5 gap-4 md:col-span-2 col-span-10 flex md:flex-col cursor-pointer">
             {tulpanImage?.map((tulpan: tulpanImageType) => (
               <motion.img
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -83,7 +83,7 @@ const FlowerDetail = () => {
                 key={tulpan.id}
                 src={tulpan.image}
                 alt="tulpan"
-                className={`object-cover shadow rounded-[15px] md:w-[80px] md:h-[80px] w-[100px] h-[100px] transition-all duration-500 ${
+                className={`object-cover shadow rounded-[15px] md:w-[80px] md:h-[80px] w-[120px] h-[120px]transition-all duration-500 ₼{
                   active === tulpan.id
                     ? "border-2 border-[#2C4B42] scale-105"
                     : "border-none"
@@ -155,7 +155,7 @@ const FlowerDetail = () => {
               <button
                 onClick={decreaseFunc}
                 disabled={countValue <= 1}
-                className={`bg-[#CCDAD6] ${
+                className={`bg-[#CCDAD6] ₼{
                   countValue <= 1 && "cursor-not-allowed"
                 } rounded-tl-3xl flex justify-center items-center py-2 px-4 w-[200px] text-3xl text-[#2C4B42]`}
               >
@@ -170,7 +170,7 @@ const FlowerDetail = () => {
               <button
                 onClick={increaseFunc}
                 disabled={countValue >= 10}
-                className={`bg-[#CCDAD6] ${
+                className={`bg-[#CCDAD6] ₼{
                   countValue >= 10 && "cursor-not-allowed"
                 } rounded-tr-3xl flex justify-center items-center py-2 px-4 w-[200px] text-3xl text-[#2C4B42]`}
               >
@@ -179,7 +179,7 @@ const FlowerDetail = () => {
             </div>
             <div className="rounded-b-3xl bg-[#2C4B42] flex justify-center items-center py-4 text-white">
               <p>
-                Add to cart <NumberFlow value={priceValue} />$
+                Add to cart <NumberFlow value={priceValue} />₼
               </p>
             </div>
           </div>

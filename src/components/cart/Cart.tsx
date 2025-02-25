@@ -8,6 +8,7 @@ import { useState } from "react";
 import NumberFlow from "@number-flow/react";
 import NotFound from "../pages/NotFound";
 import basket from "../../assets/basket.svg";
+import { useNavigate } from "react-router-dom";
 
 interface CartType {
   id: number;
@@ -43,6 +44,7 @@ const Cart = () => {
     2: 1,
   });
   const [cartItem, setCartItem] = useState<CartType[]>(cartData);
+  const navigate = useNavigate();
 
   const increaseFunc = (id: number) => {
     cartCount[id] < 10 &&
@@ -83,8 +85,8 @@ const Cart = () => {
       {cartItem.length > 0 && cartItem ? (
         <>
           <Heading name="Cart" />
-          <div className="grid grid-rows-1 md:grid-cols-2 gap-2 my-5">
-            <div className="cols-span-1">
+          <div className="grid grid-rows-1 md:grid-cols-2 gap-10 my-5 justify-between">
+            <div className="md:col-span-1 col-span-2">
               <AnimatePresence>
                 {cartItem?.map((item) => (
                   <motion.div
@@ -92,7 +94,7 @@ const Cart = () => {
                     key={item.id}
                     className="w-full gap-2 mb-5 text-[#2C4B42] flex rounded-[20px] bg-[#FFF9F3] hover:shadow-md transition-shadow duration-300 cursor-pointer"
                   >
-                    <div className="w-[150px] max-lg:w-[120px] max-lg:h-full shrink-0 h-[150px]">
+                    <div className="w-[150px] shrink-0 h-[150px]">
                       <img
                         src={item.image}
                         alt=""
@@ -116,10 +118,10 @@ const Cart = () => {
                         </div>
                       </div>
                       <div className="col-span-2 flex justify-between items-center px-4">
-                        <div className="text-lg font-bold">{item.price} $</div>
+                        <div className="text-lg font-bold">{item.price} ₼</div>
                         <div className="flex justify-end items-center gap-5">
                           <button
-                            className={`font-kodchasan text-[#2C4B42] rounded-lg text-2xl ${
+                            className={`font-kodchasan text-[#2C4B42] rounded-lg text-2xl ₼{
                               cartCount[item.id] === 1 && "cursor-not-allowed"
                             }`}
                             onClick={() => decreaseFunc(item.id)}
@@ -130,7 +132,7 @@ const Cart = () => {
                             <NumberFlow value={cartCount[item.id]} />
                           </div>
                           <button
-                            className={`font-kodchasan text-[#2C4B42] rounded-lg text-2xl ${
+                            className={`font-kodchasan text-[#2C4B42] rounded-lg text-2xl ₼{
                               cartCount[item.id] === 10 && "cursor-not-allowed"
                             }`}
                             onClick={() => increaseFunc(item.id)}
@@ -144,8 +146,8 @@ const Cart = () => {
                 ))}
               </AnimatePresence>
             </div>
-            <div className="flex flex-col justify-around gap-5 bg-[#FFF9F3] rounded-[20px] px-3 py-5 hover:shadow-md transition-shadow duration-300 col-span-1 h-[300px]">
-              <div className="grid grid-cols-3 gap-5">
+            <div className="md:col-span-1 col-span-2 flex flex-col justify-around gap-5 bg-[#FFF9F3] rounded-[20px] px-3 py-5 hover:shadow-md transition-shadow duration-300 h-[300px]">
+              <div className="grid grid-cols-3 gap-5 w-[80%] mx-auto">
                 <div className="text-[16px] text-[#2C4B42] font-[500] col-span-1 flex gap-4 flex-col">
                   <p>Sub total:</p>
                   <p>Delivery:</p>
@@ -160,7 +162,10 @@ const Cart = () => {
                 </div>
               </div>
               <div className="w-[80%] flex justify-center items-center mx-auto">
-                <Button buttonName="Continue to payment" />
+                <Button
+                  onClick={() => navigate("/payment")}
+                  buttonName="Continue to payment"
+                />
               </div>
             </div>
           </div>

@@ -1,9 +1,10 @@
 import Heading from "../general/Heading";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import "../../components/style/order.css";
 import NotFound from "./NotFound";
 import order from "../../assets/box.svg";
+import { useNavigate } from "react-router-dom";
 
 interface orderType {
   id: number;
@@ -43,11 +44,14 @@ const completedOrder: orderType[] = [
 const Order = () => {
   const [activeTab, setActiveTab] = useState<string>("active");
   const [orderData] = useState<orderType[]>(orders);
+  const navigate = useNavigate();
 
   const parentVariant = {
     initial: { opacity: 0, scale: 0.9, y: 100, transition: { duration: 0.5 } },
     animate: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5 } },
   };
+
+  
 
   return (
     <motion.section
@@ -93,50 +97,58 @@ const Order = () => {
                 {activeTab === "active" ? (
                   <div className="text-[#2C4B42]">
                     <div>📌 Active Orders List</div>
-                    {orderData?.map((order: orderType) => (
-                      <div
-                        key={order.id}
-                        className="w-full md:grid md:grid-rows-1 gap-5 my-5 md:grid-cols-2  py-4 px-4 rounded-[20px] order-shadow bg-[#FFF9F3]"
-                      >
-                        <div>
-                          <p className="text-lg text-[#2C4B42] font-[500]">
-                            {order.order_name}
-                          </p>
-                        </div>
-                        <div className="flex justify-end">{order.price}$</div>
-                        <div>{order.date}</div>
-                        <div className="flex justify-end">
-                          <button className="bg-[#2C4B42] text-white px-5 rounded-lg text-sm">
-                            {order.order_type}
-                          </button>
-                        </div>
-                      </div>
-                    ))}
+                    <AnimatePresence>
+                      {orderData?.map((order: orderType) => (
+                        <motion.div
+                          onClick={() => navigate(`/order/₼{order.id}`)}
+                          key={order.id}
+                          exit={{ opacity: 0, transition: { duration: 0.2 } }}
+                          className="w-full cursor-pointer md:grid md:grid-rows-1 gap-5 my-5 md:grid-cols-2  py-4 px-4 rounded-[20px] order-shadow bg-[#FFF9F3]"
+                        >
+                          <div>
+                            <p className="text-lg text-[#2C4B42] font-[500]">
+                              {order.order_name}
+                            </p>
+                          </div>
+                          <div className="flex justify-end">{order.price}₼</div>
+                          <div>{order.date}</div>
+                          <div className="flex justify-end">
+                            <button className="bg-[#2C4B42] text-white px-5 rounded-lg text-sm">
+                              {order.order_type}
+                            </button>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </AnimatePresence>
                   </div>
                 ) : (
                   <div>
                     <div>✅ Completed Orders List</div>
-                    {completedOrder?.map((complete: orderType) => (
-                      <div
-                        key={complete.id}
-                        className="w-full md:grid md:grid-rows-1 gap-5 my-5 md:grid-cols-2 py-4 px-4 rounded-[20px] order-shadow bg-[#FFF9F3]"
-                      >
-                        <div>
-                          <p className="text-lg text-[#2C4B42] font-[500]">
-                            {complete.order_name}
-                          </p>
-                        </div>
-                        <div className="flex justify-end">
-                          {complete.price}$
-                        </div>
-                        <div>{complete.date}</div>
-                        <div className="flex justify-end">
-                          <button className="bg-[#2C4B42] text-white px-5 rounded-lg text-sm">
-                            {complete.order_type}
-                          </button>
-                        </div>
-                      </div>
-                    ))}
+                    <AnimatePresence>
+                      {completedOrder?.map((complete: orderType) => (
+                        <motion.div
+                          exit={{ opacity: 0, transition: { duration: 0.2 } }}
+                          onClick={() => navigate(`/order/₼{complete.id}`)}
+                          key={complete.id}
+                          className="w-full cursor-pointer md:grid md:grid-rows-1 gap-5 my-5 md:grid-cols-2 py-4 px-4 rounded-[20px] order-shadow bg-[#FFF9F3]"
+                        >
+                          <div>
+                            <p className="text-lg text-[#2C4B42] font-[500]">
+                              {complete.order_name}
+                            </p>
+                          </div>
+                          <div className="flex justify-end">
+                            {complete.price}₼
+                          </div>
+                          <div>{complete.date}</div>
+                          <div className="flex justify-end">
+                            <button className="bg-[#2C4B42] text-white px-5 rounded-lg text-sm">
+                              {complete.order_type}
+                            </button>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </AnimatePresence>
                   </div>
                 )}
               </div>

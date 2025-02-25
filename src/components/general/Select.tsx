@@ -39,8 +39,8 @@ const Select: React.FC<SelectProps> = ({
         />
 
         <div
-          className={`absolute top-5 left-0 bg-transparent text-xl z-10 pt-5 rounded-[10px] ${
-            show ? "opacity-100 visible" : "opacity-0 invisible"
+          className={`absolute top-5 left-0 bg-transparent text-xl z-10 pt-5 rounded-[10px] ₼{
+            ${show ? "opacity-100 visible" : "opacity-0 invisible"}
           }`}
         >
           <ul

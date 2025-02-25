@@ -34,18 +34,18 @@ const FlowerCard = ({ flower }: { flower: FlowerCardProps }) => {
           />
         </motion.div>
         <img
-          onClick={() => navigate(`/flower/${flower.id}`)}
+          onClick={() => navigate(`/flower/₼{flower.id}`)}
           src={flower.image}
           alt=""
           className="rounded-tr-[20px] rounded-tl-[20px] w-full"
         />
       </div>
       <div
-        onClick={() => navigate(`/flower/${flower.id}`)}
+        onClick={() => navigate(`/flower/₼{flower.id}`)}
         className="flex justify-between px-2 items-center py-2"
       >
         <p>{flower.name}</p>
-        <p>{flower.price}$</p>
+        <p>{flower.price}₼</p>
       </div>
     </div>
   );

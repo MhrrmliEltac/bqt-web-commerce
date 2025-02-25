@@ -1,4 +1,9 @@
-import { Box, experimentalStyled, FormControl } from "@mui/material";
+import {
+  Box,
+  experimentalStyled,
+  FormControl,
+  useMediaQuery,
+} from "@mui/material";
 import Dialog, { DialogProps } from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -15,9 +20,11 @@ const BlurryDialog = experimentalStyled(Dialog)<DialogProps>(({}) => ({
 }));
 
 export default function BasicDialog({ handleClose, open }: ModalProps) {
+  const isMobile = useMediaQuery("(max-width: 500px)");
+
   return (
     <BlurryDialog open={open} onClose={handleClose}>
-      <Box sx={{ padding: "20px", width: "440px" }}>
+      <Box sx={{ padding: "20px", width: isMobile ? "100%" : "440px" }}>
         <DialogContent
           sx={{ display: "flex", flexDirection: "column", gap: "40px" }}
         >

@@ -1,4 +1,4 @@
-import { Box, DialogTitle, Slider } from "@mui/material";
+import { Box, DialogTitle, Slider, useMediaQuery } from "@mui/material";
 import styled from "@emotion/styled";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -68,6 +68,7 @@ const CheckboxSpan = styled.span<{ checked: boolean }>((props) => ({
 }));
 
 export default function FilterModal({ handleClose, open }: ModalProps) {
+  const isMobile = useMediaQuery("max-width:500px");
   const [selectedColor, setSelectedColor] = useState<number | null>(null);
   const [displayValue, setValue] = useState<number[]>([10, 550]);
   const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>(
@@ -94,9 +95,17 @@ export default function FilterModal({ handleClose, open }: ModalProps) {
       <div className="text-center text-[20px] my-5">
         <Heading name="Filter" />
       </div>
-      <Box sx={{ width: "440px", color: "#2C4B42" }}>
-        <DialogTitle sx={{ fontSize: "20px" }}>Type</DialogTitle>
-        <DialogContent>
+      <Box
+        sx={{
+          width: isMobile ? "100%" : "440px",
+          color: "#2C4B42",
+          display: "flex",
+          flexDirection: "column",
+          flexWrap: "wrap",
+        }}
+      >
+        <DialogTitle sx={{ fontSize: "20px", width: "100%" }}>Type</DialogTitle>
+        <DialogContent sx={{ width: isMobile ? "60%" : "100%" }}>
           <ul className="flex gap-5 items-center flex-wrap">
             {["Birthday", "Wedding", "Anniversary", "Date", "Theater"].map(
               (type) => (
@@ -115,8 +124,10 @@ export default function FilterModal({ handleClose, open }: ModalProps) {
             )}
           </ul>
         </DialogContent>
-        <DialogTitle sx={{ fontSize: "20px" }}>Colors</DialogTitle>
-        <DialogContent>
+        <DialogTitle sx={{ fontSize: "20px", width: "100%" }}>
+          Colors
+        </DialogTitle>
+        <DialogContent sx={{ width: isMobile ? "60%" : "100%" }}>
           <ul className="flex gap-3 items-center flex-wrap">
             {colors?.map((color) => (
               <li
@@ -134,7 +145,9 @@ export default function FilterModal({ handleClose, open }: ModalProps) {
             ))}
           </ul>
         </DialogContent>
-        <DialogTitle sx={{ fontSize: "20px" }}>Price range</DialogTitle>
+        <DialogTitle sx={{ fontSize: "20px", width: "100%" }}>
+          Price range
+        </DialogTitle>
         <DialogContent>
           <Box sx={{ width: "100%", color: "#2C4B42" }}>
             <Slider

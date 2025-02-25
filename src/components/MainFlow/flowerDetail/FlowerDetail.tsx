@@ -83,7 +83,7 @@ const FlowerDetail = () => {
                 key={tulpan.id}
                 src={tulpan.image}
                 alt="tulpan"
-                className={`object-cover shadow rounded-[15px] md:w-[80px] md:h-[80px] w-[120px] h-[120px]transition-all duration-500 ₼{
+                className={`object-cover shadow rounded-[15px] md:w-[80px] md:h-[80px] w-[120px] h-[120px]transition-all duration-500 ${
                   active === tulpan.id
                     ? "border-2 border-[#2C4B42] scale-105"
                     : "border-none"

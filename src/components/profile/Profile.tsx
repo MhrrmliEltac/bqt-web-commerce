@@ -1,7 +1,7 @@
 import Heading from "../general/Heading";
 import profile from "../../assets/profile.svg";
 import edit from "../../assets/edit-icon.svg";
-import { Box, duration, FormControl, FormLabel } from "@mui/material";
+import { Box, FormControl, FormLabel } from "@mui/material";
 import { useState } from "react";
 import { motion } from "framer-motion";
 

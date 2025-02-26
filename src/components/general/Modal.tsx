@@ -22,10 +22,7 @@ export default function BasicDialog({ handleClose, open }: ModalProps) {
           padding: "20px",
           width: {
             xs: "100%",
-            sm: "100%",
-            md: "440px",
-            lg: "440px",
-            xl: "440px",
+            md: 440,
           },
         }}
       >

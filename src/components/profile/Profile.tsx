@@ -174,7 +174,9 @@ const Profile = () => {
                   Edit
                 </p>
               ) : (
-                <AddNewNumber open={open} handleClose={handleNumberClose} />
+                open && (
+                  <AddNewNumber open={open} handleClose={handleNumberClose} />
+                )
               )}
             </Box>
           </FormControl>

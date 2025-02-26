@@ -20,7 +20,7 @@ const FlowerCard = ({ flower }: { flower: FlowerCardProps }) => {
   };
 
   return (
-    <div className="w-full h-full rounded-[20px] bg-[#FFF9F3] transition-shadow duration-300 hover:shadow-[0px_4px_6px_0px_rgba(0,0,0,0.13)] cursor-pointer">
+    <div className="w-full h-full rounded-[20px] bg-[#FFF9F3] transition-shadow duration-300 hover:shadow-[0px_4px_6px_0px_rgba(0,0,0,0.13)] cursor-pointer flex flex-col">
       <div className="relative">
         <motion.div
           whileTap={{ scale: 0.9 }}
@@ -37,7 +37,7 @@ const FlowerCard = ({ flower }: { flower: FlowerCardProps }) => {
           onClick={() => navigate(`/flower/₼{flower.id}`)}
           src={flower.image}
           alt=""
-          className="rounded-tr-[20px] rounded-tl-[20px] w-full"
+          className="rounded-tr-[20px] rounded-tl-[20px] w-full "
         />
       </div>
       <div

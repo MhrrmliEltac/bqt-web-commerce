@@ -55,7 +55,7 @@ const FlowerHeader = () => {
         )}
         <FilterDialog open={open} handleClose={handleClose} />
       </div>
-      <div className="flex items-center gap-3 text-[24px] text-[#2C4B42] max-lg:max-w-max min-md:w-[45%] md:static absolute left-[30%] max-sm:left-0 -top-[50px]">
+      <div className="flex items-center gap-3 text-[24px] text-[#2C4B42] max-lg:max-w-max min-md:w-[45%] md:static  absolute left-[30%] max-sm:left-100 -top-[50px]">
         <img src={mask} alt="" />
         <h1>Flowers & Bouquets</h1>
       </div>

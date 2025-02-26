@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import tulpan1 from "../../../assets/tulpan-1.png";
 import tulpan2 from "../../../assets/tulpan-2.png";
 import tulpan3 from "../../../assets/tulpan-3.png";
@@ -61,15 +61,15 @@ const FlowerDetail = () => {
     setFavorite(!favoriteImg);
   };
 
-  const increaseFunc = () => {
+  const increaseFunc = useCallback(() => {
     countValue < 10 ? setCountValue(++countValue) : setCountValue(10);
     setPriceValue(price * countValue);
-  };
+  }, [countValue]);
 
-  const decreaseFunc = () => {
+  const decreaseFunc = useCallback(() => {
     countValue > 1 ? setCountValue(--countValue) : setCountValue(1);
     setPriceValue(price * countValue);
-  };
+  }, [countValue]);
 
   return (
     <section className="min-h-[calc(100vh-200px)] md:mb-48 mb-3">

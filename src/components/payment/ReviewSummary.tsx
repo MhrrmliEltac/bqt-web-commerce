@@ -4,12 +4,11 @@ import cartİmage1 from "../../assets/cart-image-1.png";
 import cartİmage2 from "../../assets/cart-image-2.png";
 import { useAppDispatch, useAppSelector } from "../../hook/hook";
 import { increaseActive } from "../redux/slice/ActiveSlice";
-import { toast } from "react-toastify";
 import confetti from "canvas-confetti";
 import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
-import { FaCheckCircle, FaInfoCircle } from "react-icons/fa";
 import NumberFlow from "@number-flow/react";
+import { toast } from "sonner";
 
 interface CartType {
   id: number;
@@ -87,45 +86,14 @@ const ReviewSummary = () => {
           y: 0.9,
         },
       });
-
-      toast.success("Promo code applied successfully!", {
-        position: "bottom-right",
-        autoClose: 3000,
-        pauseOnHover: false,
-        draggable: true,
-        theme: "light",
-        icon: <FaCheckCircle />,
-        style: {
-          background: "#EAF6EA",
-          color: "#2C4B42",
-          borderRadius: "10px",
-          padding: "10px 15px",
-          fontSize: "14px",
-          fontWeight: "500",
-          fontFamily: "Kodchasan sans-serif",
-        },
-      });
+      const successMessage = () =>
+        toast.success("Promo code applied successfully");
+      successMessage();
     } else {
       setDiscount(0);
       setTotal((prev) => prev + 7);
-
-      toast.info("Promo code removed!", {
-        position: "bottom-right",
-        autoClose: 3000,
-        pauseOnHover: false,
-        draggable: true,
-        theme: "light",
-        icon: <FaInfoCircle />,
-        style: {
-          background: "#F0F8FF",
-          color: "#2C4B42",
-          borderRadius: "10px",
-          padding: "10px 15px",
-          fontSize: "14px",
-          fontWeight: "500",
-          fontFamily: "Kodchasan sans-serif",
-        },
-      });
+      const infoMessage = () => toast.info("Promo code removed");
+      infoMessage();
     }
 
     setPromoCode(!promoCode);

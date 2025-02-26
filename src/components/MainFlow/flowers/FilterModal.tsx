@@ -87,16 +87,17 @@ export default function FilterModal({ handleClose, open }: ModalProps) {
   };
 
   return (
-    <BlurryDialog open={open} onClose={handleClose} fullWidth>
+    <BlurryDialog open={open} onClose={handleClose}>
       <div className="text-center text-[20px] my-5">
         <Heading name="Filter" />
       </div>
       <Box
         sx={{
-          width: "100%",
+          width: "80%",
           color: "#2C4B42",
           display: "flex",
           flexDirection: "column",
+          margin: "0 auto",
         }}
       >
         <DialogTitle sx={{ fontSize: "20px" }}>Type</DialogTitle>

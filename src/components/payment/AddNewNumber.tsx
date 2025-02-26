@@ -1,4 +1,4 @@
-import { Box, FormControl, FormLabel, useMediaQuery } from "@mui/material";
+import { Box, FormControl, FormLabel } from "@mui/material";
 import styled from "@emotion/styled";
 import Dialog from "@mui/material/Dialog";
 import Heading from "../general/Heading";
@@ -15,7 +15,6 @@ const BlurryDialog = styled(Dialog)({
 });
 
 const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
-  const isMobile = useMediaQuery("(max-width: 768px)");
   const [openVerificaion, setOpenVerification] = useState<boolean>(false);
 
   const handleOpenVerification = () => {
@@ -31,7 +30,7 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
         <Box
           sx={{
             maxWidth: "440px",
-            width: isMobile ? "100%" : "440px",
+            width: { xs: "100%", sm: "440px" },
             color: "#2C4B42",
             display: "flex",
             flexDirection: "column",
@@ -59,7 +58,7 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
           <Box
             sx={{
               display: "flex",
-              flexDirection: isMobile ? "column" : "row",
+              flexDirection: { xs: "column", sm: "row" },
               gap: "10px",
             }}
           >

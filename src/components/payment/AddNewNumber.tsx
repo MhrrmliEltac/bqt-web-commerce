@@ -65,7 +65,7 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
             >
               Add
             </button>
-            <Verification open={openVerificaion} handleClose={handleClose} />
+            <Verification open={openVerificaion} handleClose={handleClose} text=""/>
           </Box>
         </Box>
       </BlurryDialog>

@@ -4,8 +4,8 @@ import edit from "../../assets/edit-icon.svg";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import AddNewNumber from "../payment/AddNewNumber";
-import AddNewEmail from "./AddNewEmail";
 import EditableField from "./EditableField";
+import AddNewEmail from "./AddNewEmail";
 
 interface User {
   name: string;

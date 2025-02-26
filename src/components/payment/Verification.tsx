@@ -6,13 +6,14 @@ import Heading from "../general/Heading";
 interface ModalProps {
   open: boolean;
   handleClose: () => void;
+  text: string;
 }
 
 const BlurryDialog = styled(Dialog)({
   backdropFilter: "blur(10px)",
 });
 
-const Verification: React.FC<ModalProps> = ({ open, handleClose }) => {
+const Verification: React.FC<ModalProps> = ({ open, handleClose, text }) => {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
@@ -44,8 +45,7 @@ const Verification: React.FC<ModalProps> = ({ open, handleClose }) => {
                 justifyContent: "center",
               }}
             >
-              We have sent a verification code <br /> to +994501234567 phone
-              number
+              We have sent a verification code <br /> to {text}
             </FormLabel>
             <div className="grid grid-cols-4 gap-5">
               <input

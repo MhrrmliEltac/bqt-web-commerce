@@ -4,7 +4,9 @@ type HeadingProps = {
 
 const Heading: React.FC<HeadingProps> = ({ name }) => {
   return (
-    <div className={`text-[#2C4B42] text-[24px] font-[500] font-kodchasan`}>
+    <div
+      className={`text-[#2C4B42] md:text-[24px] text-[20px] font-[500] font-kodchasan`}
+    >
       {name}
     </div>
   );

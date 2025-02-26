@@ -2,8 +2,8 @@ import { Box, FormControl, useMediaQuery } from "@mui/material";
 import styled from "@emotion/styled";
 import Dialog from "@mui/material/Dialog";
 import Heading from "../general/Heading";
-import { useState } from "react";
-import Verification from "./Verification";
+import React, { useState } from "react";
+import Verification from "../payment/Verification";
 
 interface ModalProps {
   open: boolean;
@@ -14,19 +14,24 @@ const BlurryDialog = styled(Dialog)({
   backdropFilter: "blur(10px)",
 });
 
-const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
+const AddNewEmail: React.FC<ModalProps> = ({ open, handleClose }) => {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [openVerificaion, setOpenVerification] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>("");
 
   const handleOpenVerification = () => {
     setOpenVerification(!openVerificaion);
+  };
+
+  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
   };
 
   return (
     <section>
       <BlurryDialog open={open} onClose={handleClose}>
         <div className="text-center text-[20px] mt-16">
-          <Heading name="Add new phone number" />
+          <Heading name="Add new email" />
         </div>
         <Box
           sx={{
@@ -41,8 +46,12 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
         >
           <FormControl>
             <input
-              type="tel"
-              placeholder="Phone"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleChangeEmail(e)
+              }
               className="w-full border-b border-[#2C4B42] h-[40px] mt-2 text-[18px] outline-none font-[400] font-kodchasan"
             />
           </FormControl>
@@ -54,18 +63,27 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
             }}
           >
             <button
+              disabled={email === "" ? true : false}
+              onClick={handleOpenVerification}
+              className={`flex justify-center items-center rounded-[15px] border-2 border-[#2C4B42] bg-[#2C4B42] text-white w-full px-2 py-2 font-kodchasan ${
+                email === "" ? "opacity-60" : "opacity-100"
+              }
+            `}
+            >
+              Add
+            </button>
+            <button
               onClick={handleClose}
               className="flex justify-center items-center rounded-[15px] border-2 border-[#2C4B42] bg-transparent text-[#2C4B42] w-full px-2 py-2 font-kodchasan"
             >
               Cancel
             </button>
-            <button
-              onClick={handleOpenVerification}
-              className="flex justify-center items-center rounded-[15px] border-2 border-[#2C4B42] bg-[#2C4B42] text-white w-full px-2 py-2 font-kodchasan"
-            >
-              Add
-            </button>
-            <Verification open={openVerificaion} handleClose={handleClose} />
+
+            <Verification
+              open={openVerificaion}
+              handleClose={handleClose}
+              text={`${email} email address`}
+            />
           </Box>
         </Box>
       </BlurryDialog>
@@ -73,4 +91,4 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
   );
 };
 
-export default AddNewNumber;
+export default AddNewEmail;

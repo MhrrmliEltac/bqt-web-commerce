@@ -1,4 +1,4 @@
-import { Box, FormControl, FormLabel, useMediaQuery } from "@mui/material";
+import { Box, FormControl, FormLabel } from "@mui/material";
 import styled from "@emotion/styled";
 import Dialog from "@mui/material/Dialog";
 import Heading from "../general/Heading";
@@ -48,8 +48,6 @@ const CheckboxSpan = styled.span<{ checked: boolean }>((props) => ({
 }));
 
 const AddNewCard: React.FC<ModalProps> = ({ open, handleClose }) => {
-  const isMobile = useMediaQuery("(max-width: 500px)");
-
   return (
     <section>
       <BlurryDialog open={open} onClose={handleClose}>
@@ -103,7 +101,7 @@ const AddNewCard: React.FC<ModalProps> = ({ open, handleClose }) => {
             sx={{
               display: "flex",
               gap: 5,
-              flexDirection: isMobile ? "column" : "row",
+              flexDirection: { xs: "column", sm: "row" },
             }}
           >
             <FormControl>
@@ -149,7 +147,7 @@ const AddNewCard: React.FC<ModalProps> = ({ open, handleClose }) => {
           <Box
             sx={{
               display: "flex",
-              flexDirection: isMobile ? "column" : "row",
+              flexDirection: { xs: "column", sm: "row" },
               gap: "10px",
             }}
           >

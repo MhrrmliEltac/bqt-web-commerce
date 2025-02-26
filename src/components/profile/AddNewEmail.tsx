@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import Dialog from "@mui/material/Dialog";
 import Heading from "../general/Heading";
 import React, { useState } from "react";
-import Verification from "../payment/Verification";
+import VerificationStep from "../payment/VerificationStep";
 
 interface ModalProps {
   open: boolean;
@@ -79,10 +79,10 @@ const AddNewEmail: React.FC<ModalProps> = ({ open, handleClose }) => {
               Cancel
             </button>
 
-            <Verification
-              open={openVerificaion}
-              handleClose={handleClose}
-              text={`${email} email address`}
+            <VerificationStep
+              otp=""
+              setOtp={() => {}}
+              handleVerificationClose={handleOpenVerification}
             />
           </Box>
         </Box>

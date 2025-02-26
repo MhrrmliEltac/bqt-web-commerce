@@ -23,10 +23,12 @@ import Layout from "./components/layout/Layout";
 import OrderDetail from "./components/order/OrderDetail";
 import PaymentDetail from "./components/payment/PaymentDetail";
 import Profile from "./components/profile/Profile";
+import { Toaster } from "sonner";
 
 function App() {
   return (
     <Router>
+      <Toaster />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
@@ -51,7 +53,6 @@ function App() {
         <Route path="/not-found" element={<NotFoundPage />} />
       </Routes>
 
-      {/* Toastify burada əlavə olunur */}
       <ToastContainer autoClose={3000} hideProgressBar />
     </Router>
   );

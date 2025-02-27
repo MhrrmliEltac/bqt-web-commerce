@@ -6,6 +6,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
 import AddNewNumber from "../payment/AddNewNumber";
+import AddNewEmail from "./AddNewEmail";
 
 interface User {
   name: string;
@@ -31,7 +32,10 @@ const Profile = () => {
 
   const handleEditClick = (text: string) => {
     text === "name" && setIsNameReadOnly(!isNameReadOnly);
-    text === "email" && setIsEmailReadOnly(!isEmailReadOnly);
+    if (text === "email") {
+      setIsEmailReadOnly(!isEmailReadOnly);
+      setOpen(!open);
+    }
     if (text === "phone") {
       setIsPhoneReadOnly(!isPhoneReadOnly);
       setOpen(!open);
@@ -49,6 +53,11 @@ const Profile = () => {
   const handleNumberClose = () => {
     setOpen(!open);
     setIsPhoneReadOnly(!isPhoneReadOnly);
+  };
+
+  const handleEmailClose = () => {
+    setOpen(!open);
+    setIsEmailReadOnly(!isEmailReadOnly);
   };
 
   return (
@@ -210,12 +219,18 @@ const Profile = () => {
                 onChange={handleInputChange}
                 className="font-[400] font-kodchasan text-[#2c4b42] text-lg bg-transparent outline-none"
               />
-              <div
-                onClick={() => handleEditClick("email")}
-                className="cursor-pointer text-[#2c4b42] text-base font-medium"
-              >
-                {isEmailReadOnly ? "Edit" : "Save"}
-              </div>
+              {isEmailReadOnly ? (
+                <p
+                  onClick={() => handleEditClick("email")}
+                  className="cursor-pointer text-[#2c4b42] text-base font-medium"
+                >
+                  Edit
+                </p>
+              ) : (
+                open && (
+                  <AddNewEmail open={open} handleClose={handleEmailClose} />
+                )
+              )}
             </Box>
           </FormControl>
         </div>

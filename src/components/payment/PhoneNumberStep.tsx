@@ -1,13 +1,6 @@
-import { FormControl, FormLabel } from "@mui/material";
+import { FormControl } from "@mui/material";
 import ActionButtons from "./ActionButtons";
 import { useState } from "react";
-
-const formLabelStyles = {
-  fontSize: "14px",
-  color: "#2C4B42",
-  fontWeight: 600,
-  fontFamily: "Kodchasan, sans-serif",
-};
 
 // Telefon nömrəsini formatlayan funksiya
 const getFormattedValue = (number: string) => {
@@ -36,11 +29,11 @@ const PhoneNumberStep = ({
   toggleVerification: () => void;
   handleClose: () => void;
 }) => {
-  const [inputValue, setInputValue] = useState<string>("+994 "); // Əvvəlcədən +994 olsun
+  const [inputValue, setInputValue] = useState<string>("+994 ");
 
   const handleChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    if (!value.startsWith("+994")) return; // Əgər istifadəçi +994-i silmək istəsə, icazə vermə
+    if (!value.startsWith("+994")) return;
 
     const formattedValue = getFormattedValue(value);
     setInputValue(formattedValue);
@@ -48,14 +41,13 @@ const PhoneNumberStep = ({
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Backspace" && inputValue.length <= 5) {
-      e.preventDefault(); // Əgər `+994 ` hissəsi silinmək istənirsə, icazə vermə
+      e.preventDefault();
     }
   };
 
   return (
     <>
-      <FormControl sx={{ marginTop: "2rem" }}>
-        <FormLabel sx={formLabelStyles}>Complete address</FormLabel>
+      <FormControl>
         <input
           type="tel"
           value={inputValue}

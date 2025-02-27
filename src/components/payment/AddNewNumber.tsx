@@ -43,7 +43,7 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
     if (inputValue.length === 5) {
       toast.info("Enter phone number");
     } else if (inputValue.length >= 5 && inputValue.length < 19) {
-      toast.error("Don't truth phone number");
+      toast.error("Invalid phone number");
     } else {
       setOpenVerification((prev) => !prev);
     }

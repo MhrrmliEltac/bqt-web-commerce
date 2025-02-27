@@ -8,7 +8,7 @@ const formLabelStyles = {
   fontWeight: 600,
   fontFamily: "Kodchasan, sans-serif",
 };
-// fix 
+// fixledim
 const VerificationStep = ({
   otp,
   setOtp,

@@ -48,7 +48,6 @@ const Profile = () => {
     }
     if (text === "phone") {
       setEditMode({ ...editMode, phone: !editMode.phone });
-      console.log(editMode.phone, "phone");
       setOpen(!open);
     }
   };

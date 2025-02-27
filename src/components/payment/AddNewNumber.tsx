@@ -1,10 +1,10 @@
-import { Box } from "@mui/material";
+import { Box, FormControl } from "@mui/material";
 import styled from "@emotion/styled";
 import Dialog from "@mui/material/Dialog";
 import Heading from "../general/Heading";
 import { useState } from "react";
-import PhoneNumberStep from "./PhoneNumberStep";
 import VerificationStep from "./VerificationStep";
+import ActionButtons from "./ActionButtons";
 
 interface ModalProps {
   open: boolean;
@@ -14,6 +14,25 @@ interface ModalProps {
 const BlurryDialog = styled(Dialog)({
   backdropFilter: "blur(10px)",
 });
+
+const getFormattedValue = (number: string) => {
+  const numberDigits = number.replace(/\D/g, "").slice(3, 12);
+  let res = "+994";
+
+  if (numberDigits.length > 0) {
+    res += ` (${numberDigits.slice(0, 2)})`;
+  }
+  if (numberDigits.length >= 3) {
+    res += ` ${numberDigits.slice(2, 5)}`;
+  }
+  if (numberDigits.length >= 6) {
+    res += `-${numberDigits.slice(5, 7)}`;
+  }
+  if (numberDigits.length >= 8) {
+    res += `-${numberDigits.slice(7)}`;
+  }
+  return res;
+};
 
 const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
   const [openVerification, setOpenVerification] = useState(false);
@@ -25,6 +44,23 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
     handleClose();
     setTimeout(toggleVerification, 1000);
   };
+
+  const [inputValue, setInputValue] = useState<string>("+994 ");
+
+  const handleChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    if (!value.startsWith("+994")) return;
+
+    const formattedValue = getFormattedValue(value);
+    setInputValue(formattedValue);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Backspace" && inputValue.length <= 5) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <section>
       <BlurryDialog
@@ -46,7 +82,7 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
             color: "#2C4B42",
             display: "flex",
             flexDirection: "column",
-            gap: openVerification ? "7rem" : "210px",
+            gap: openVerification ? "7rem" : "80px",
             padding: "20px",
           }}
         >
@@ -54,13 +90,28 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
             <VerificationStep
               otp={otp}
               setOtp={setOtp}
-              handleVerificationClose={handleVerificationClose}
-            />
-          ) : (
-            <PhoneNumberStep
-              toggleVerification={toggleVerification}
+              text={`${inputValue} phone number`}
               handleClose={handleClose}
             />
+          ) : (
+            <>
+              <FormControl>
+                <input
+                  type="tel"
+                  value={inputValue}
+                  placeholder="+994 50 123 45 67"
+                  onChange={handleChangeInputValue}
+                  onKeyDown={handleKeyDown}
+                  className="w-full border-b border-[#2C4B42] h-[40px] mt-2 text-[18px] outline-none font-[400] font-kodchasan"
+                />
+              </FormControl>
+              <ActionButtons
+                primaryAction={toggleVerification}
+                primaryText="Add"
+                secondaryAction={handleClose}
+                secondaryText="Cancel"
+              />
+            </>
           )}
         </Box>
       </BlurryDialog>

@@ -101,7 +101,7 @@ const Navbar: React.FC = () => {
               Səbət
             </div>
           </Link>
-          <Link to="/" className="relative group box-link">
+          <Link to="/profile" className="relative group box-link">
             <motion.div whileHover={{ scale: 1.1 }}>
               <img src={user} alt="" />
             </motion.div>

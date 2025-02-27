@@ -46,7 +46,7 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
             color: "#2C4B42",
             display: "flex",
             flexDirection: "column",
-            gap: openVerification ? "7rem" : "210px",
+            gap: openVerification ? "7rem" : "80px",
             padding: "20px",
           }}
         >
@@ -54,7 +54,8 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
             <VerificationStep
               otp={otp}
               setOtp={setOtp}
-              handleVerificationClose={handleVerificationClose}
+              text="text"
+              handleClose={handleClose}
             />
           ) : (
             <PhoneNumberStep

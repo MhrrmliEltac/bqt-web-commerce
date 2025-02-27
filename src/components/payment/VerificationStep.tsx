@@ -12,18 +12,20 @@ const formLabelStyles = {
 const VerificationStep = ({
   otp,
   setOtp,
-  handleVerificationClose,
+  handleClose,
+  text,
 }: {
   otp: string;
   setOtp: (value: string) => void;
-  handleVerificationClose: () => void;
+  handleClose: () => void;
+  text: string;
 }) => (
   <>
     <FormControl>
       <FormLabel
         sx={{ ...formLabelStyles, textAlign: "center", marginBottom: "1rem" }}
       >
-        We have sent a verification code <br /> to +994501234567 phone number
+        We have sent a verification code <br /> to {text}
       </FormLabel>
       <div className="grid grid-cols-4 gap-5">
         <OTPInput valueLength={4} value={otp} onChange={setOtp} />
@@ -33,7 +35,7 @@ const VerificationStep = ({
       <ActionButtons
         primaryAction={() => {}}
         primaryText="Verify"
-        secondaryAction={handleVerificationClose}
+        secondaryAction={handleClose}
         secondaryText="Cancel"
       />
       <Box

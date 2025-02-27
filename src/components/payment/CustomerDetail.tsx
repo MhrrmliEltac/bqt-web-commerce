@@ -39,7 +39,6 @@ const CustomerDetail = () => {
 
   const handleChangeAddressColor = (id: number) => {
     let index = id - 1;
-    console.log(addressColor);
     addressArr[index].id === id && setAddressColor(id);
   };
 
@@ -97,6 +96,7 @@ const CustomerDetail = () => {
           <AddNewAddress
             open={openAddress}
             handleClose={() => handleClose("Address")}
+            headingName=""
           />
         </div>
         <div className="text-[#2C4B42] w-full flex justify-between gap-4 flex-col px-4 py-2 rounded-[10px] bg-[#FFF9F3]">

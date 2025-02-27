@@ -54,7 +54,8 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
             <VerificationStep
               otp={otp}
               setOtp={setOtp}
-              handleVerificationClose={handleVerificationClose}
+              text="text"
+              handleClose={handleClose}
             />
           ) : (
             <PhoneNumberStep

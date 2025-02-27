@@ -2,7 +2,6 @@ import { FormControl } from "@mui/material";
 import ActionButtons from "./ActionButtons";
 import { useState } from "react";
 
-// Telefon nömrəsini formatlayan funksiya
 const getFormattedValue = (number: string) => {
   const numberDigits = number.replace(/\D/g, "").slice(3, 12);
   let res = "+994";

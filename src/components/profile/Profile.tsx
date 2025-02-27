@@ -14,11 +14,20 @@ interface User {
   phone: string;
 }
 
+interface EditModeType {
+  name: boolean;
+  email: boolean;
+  phone: boolean;
+}
+
 const Profile = () => {
   const [activeTab, setActiveTab] = useState<string>("Personal info");
-  const [isNameReadOnly, setIsNameReadOnly] = useState<boolean>(true);
-  const [isPhoneReadOnly, setIsPhoneReadOnly] = useState<boolean>(true);
-  const [isEmailReadOnly, setIsEmailReadOnly] = useState<boolean>(true);
+  const [editMode, setEditMode] = useState<EditModeType>({
+    name: false,
+    email: false,
+    phone: false,
+  });
+
   const [open, setOpen] = useState<boolean>(false);
   const [user, setUser] = useState<User>({
     name: "Edward Norton",
@@ -31,13 +40,16 @@ const Profile = () => {
   };
 
   const handleEditClick = (text: string) => {
-    text === "name" && setIsNameReadOnly(!isNameReadOnly);
+    if (text === "name") {
+      setEditMode({ ...editMode, name: true });
+    }
     if (text === "email") {
-      setIsEmailReadOnly(!isEmailReadOnly);
+      setEditMode({ ...editMode, email: true });
       setOpen(!open);
     }
     if (text === "phone") {
-      setIsPhoneReadOnly(!isPhoneReadOnly);
+      setEditMode({ ...editMode, phone: !editMode.phone });
+      console.log(editMode.phone, "phone");
       setOpen(!open);
     }
   };
@@ -46,18 +58,19 @@ const Profile = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleCancelClick = () => {
-    setIsNameReadOnly(!isNameReadOnly);
-  };
-
-  const handleNumberClose = () => {
-    setOpen(!open);
-    setIsPhoneReadOnly(!isPhoneReadOnly);
-  };
-
-  const handleEmailClose = () => {
-    setOpen(!open);
-    setIsEmailReadOnly(!isEmailReadOnly);
+  const handleClose = (editModeName: string) => {
+    if (editModeName === "phone") {
+      setEditMode({ ...editMode, phone: !editMode.phone });
+      setOpen(!open);
+    }
+    if (editModeName === "email") {
+      setEditMode({ ...editMode, email: !editMode.email });
+      setOpen(!open);
+    }
+    if (editModeName === "name") {
+      setEditMode({ ...editMode, name: !editMode.name });
+      setOpen(!open);
+    }
   };
 
   return (
@@ -70,8 +83,9 @@ const Profile = () => {
           {["Personal info", "My addresses", "My cards", "Change password"].map(
             (item, index) => (
               <motion.li
-                initial={{ transition: { duration: 0.6 } }}
-                animate={{ transition: { duration: 0.6 } }}
+                initial={{ opacity: activeTab === item ? 1 : 0.5 }}
+                animate={{ opacity: activeTab === item ? 1 : 0.5 }}
+                transition={{ duration: 0.6 }}
                 onClick={() => handleChangeActive(item)}
                 key={index}
                 className={`${
@@ -120,28 +134,28 @@ const Profile = () => {
                 type="text"
                 name="name"
                 id="name"
-                readOnly={isNameReadOnly}
+                readOnly={!editMode.name}
                 value={user.name}
                 onChange={handleInputChange}
                 className="font-[400] font-kodchasan text-[#2C4B42] text-lg bg-transparent outline-none"
               />
               <div className="cursor-pointer text-[#2C4B42] text-base font-medium">
-                {isNameReadOnly ? (
-                  <div onClick={() => handleEditClick("name")}>Edit</div>
-                ) : (
+                {editMode.name ? (
                   <div className="flex justify-between items-center w-12">
                     <Icon
                       icon="maki:cross"
                       className="cursor-pointer text-[#2c4b42]"
                       fontSize="20px"
-                      onClick={handleCancelClick}
+                      onClick={() => handleClose("name")}
                     />
                     <Icon
                       icon="material-symbols:check"
                       fontSize="28px"
-                      onClick={handleCancelClick}
+                      onClick={() => handleClose("name")}
                     />
                   </div>
+                ) : (
+                  <div onClick={() => handleEditClick("name")}>Edit</div>
                 )}
               </div>
             </Box>
@@ -170,22 +184,25 @@ const Profile = () => {
                 type="tel"
                 name="phone"
                 id="phone"
-                readOnly={isPhoneReadOnly}
+                readOnly={editMode.phone}
                 value={user.phone}
                 onChange={handleInputChange}
                 className="font-[400] font-kodchasan text-[#2c4b42] text-lg bg-transparent outline-none"
               />
-              {isPhoneReadOnly ? (
+              {editMode.phone ? (
+                open && (
+                  <AddNewNumber
+                    open={open}
+                    handleClose={() => handleClose("phone")}
+                  />
+                )
+              ) : (
                 <p
                   onClick={() => handleEditClick("phone")}
                   className="cursor-pointer text-[#2c4b42] text-base font-medium"
                 >
                   Edit
                 </p>
-              ) : (
-                open && (
-                  <AddNewNumber open={open} handleClose={handleNumberClose} />
-                )
               )}
             </Box>
           </FormControl>
@@ -214,22 +231,25 @@ const Profile = () => {
                 type="email"
                 name="email"
                 id="email"
-                readOnly={isEmailReadOnly}
+                readOnly={editMode.email}
                 value={user.email}
                 onChange={handleInputChange}
                 className="font-[400] font-kodchasan text-[#2c4b42] text-lg bg-transparent outline-none"
               />
-              {isEmailReadOnly ? (
+              {editMode.email ? (
+                open && (
+                  <AddNewEmail
+                    open={open}
+                    handleClose={() => handleClose("email")}
+                  />
+                )
+              ) : (
                 <p
                   onClick={() => handleEditClick("email")}
                   className="cursor-pointer text-[#2c4b42] text-base font-medium"
                 >
                   Edit
                 </p>
-              ) : (
-                open && (
-                  <AddNewEmail open={open} handleClose={handleEmailClose} />
-                )
               )}
             </Box>
           </FormControl>

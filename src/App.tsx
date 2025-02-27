@@ -22,8 +22,8 @@ import NotFoundPage from "./components/pages/NotFoundPage";
 import Layout from "./components/layout/Layout";
 import OrderDetail from "./components/order/OrderDetail";
 import PaymentDetail from "./components/payment/PaymentDetail";
-import Profile from "./components/profile/Profile";
 import { Toaster } from "sonner";
+import ProfileLayout from "./components/profile/ProfileLayout";
 
 function App() {
   return (
@@ -39,7 +39,7 @@ function App() {
           <Route path="/wishlist" element={<Favorite />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/payment" element={<PaymentDetail />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<ProfileLayout />} />
         </Route>
 
         <Route element={<AuthLayout />}>

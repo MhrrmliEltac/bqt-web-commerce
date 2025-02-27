@@ -2,9 +2,11 @@ import { Box, FormControl, FormLabel } from "@mui/material";
 import styled from "@emotion/styled";
 import Dialog from "@mui/material/Dialog";
 import Heading from "../general/Heading";
+import { toast } from "sonner";
 
 interface ModalProps {
   open: boolean;
+  headingName: string;
   handleClose: () => void;
 }
 
@@ -12,12 +14,27 @@ const BlurryDialog = styled(Dialog)({
   backdropFilter: "blur(10px)",
 });
 
-const AddNewAddress: React.FC<ModalProps> = ({ open, handleClose }) => {
+const AddNewAddress: React.FC<ModalProps> = ({
+  open,
+  handleClose,
+  headingName,
+}) => {
+  const addAddressNotify = () => {
+    handleClose();
+    headingName === "change"
+      ? toast.success("Change address")
+      : toast.success("Address added");
+  };
+
   return (
     <section>
       <BlurryDialog open={open} onClose={handleClose}>
         <div className="text-center text-[20px] my-5">
-          <Heading name="Add new address" />
+          <Heading
+            name={
+              headingName === "change" ? "Change address" : "Add new address"
+            }
+          />
         </div>
         <Box
           sx={{
@@ -77,7 +94,10 @@ const AddNewAddress: React.FC<ModalProps> = ({ open, handleClose }) => {
             >
               Cancel
             </button>
-            <button className="flex justify-center items-center rounded-[15px] border-2 border-[#2C4B42] bg-[#2C4B42] text-white w-full px-2 py-2 font-kodchasan">
+            <button
+              className="flex justify-center items-center rounded-[15px] border-2 border-[#2C4B42] bg-[#2C4B42] text-white w-full px-2 py-2 font-kodchasan"
+              onClick={addAddressNotify}
+            >
               Add
             </button>
           </Box>

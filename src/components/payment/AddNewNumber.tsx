@@ -51,7 +51,9 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
 
   const handleVerificationClose = () => {
     handleClose();
-    setTimeout(toggleVerification, 0);
+    setTimeout(() => {
+      setOpenVerification(!openVerification);
+    }, 1000);
   };
 
   const [inputValue, setInputValue] = useState<string>("+994 ");
@@ -100,7 +102,7 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
               otp={otp}
               setOtp={setOtp}
               text={`${inputValue} phone number`}
-              handleClose={handleClose}
+              handleClose={handleVerificationClose}
             />
           ) : (
             <>

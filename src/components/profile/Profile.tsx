@@ -38,6 +38,8 @@ const Profile = () => {
     phone: "+994 50 123 45 67",
   });
 
+  const [profileImg, setProfileImg] = useState<string>(profile);
+
   const handleEditClick = (text: string) => {
     if (text === "name") {
       setEditMode({ ...editMode, name: true });
@@ -70,6 +72,13 @@ const Profile = () => {
       setOpen(!open);
     }
   };
+  const handleInputFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const imgFiles = e.target?.files;
+    if (imgFiles) {
+      const imgSrc = URL.createObjectURL(imgFiles[0]);
+      setProfileImg(imgSrc);
+    }
+  };
 
   return (
     <motion.section
@@ -81,15 +90,26 @@ const Profile = () => {
       <div className="flex flex-col gap-10 mt-5">
         <div className="rounded-full relative">
           <img
-            src={profile}
-            alt=""
+            src={profileImg}
+            alt="profile"
             width={80}
             height={80}
             className="rounded-full object-cover bg-center bg-cover w-[150px] h-[150px]"
           />
-          <div className="absolute top-[75%] left-[100px] bg-[#2C4B42] rounded-full w-10 h-10 flex justify-center items-center cursor-pointer">
-            <img src={edit} alt="" />
-          </div>
+          <label
+            htmlFor="file-upload"
+            className="absolute top-[75%] left-[100px] bg-[#2C4B42] rounded-full w-10 h-10 flex justify-center items-center cursor-pointer"
+          >
+            <img src={edit} alt="Edit" className="w-5 h-5" />
+          </label>
+          <input
+            type="file"
+            id="file-upload"
+            className="hidden"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleInputFileChange(e)
+            }
+          />
         </div>
 
         <FormControl>

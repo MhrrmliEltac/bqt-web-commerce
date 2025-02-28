@@ -67,7 +67,7 @@ const OrderDetail = () => {
           <p className="font-[500] text-[20px] my-3">
             Estimated delivery time: 25:39
           </p>
-          <div className="flex gap-4 py-2 relative w-4/5 justify-between">
+          <div className="flex gap-4 py-2 relative max-sm:w-full w-4/5 justify-between">
             <div className="flex gap-2 flex-col items-center justify-start z-10">
               <div className="bg-white w-[60px] h-[60px] border-4 border-[#2C4B42] rounded-full flex items-center justify-center">
                 <div className="bg-[#2C4B42] w-[45px] h-[45px] rounded-full flex items-center justify-center">
@@ -142,7 +142,7 @@ const OrderDetail = () => {
                 custom={item.id}
                 key={item.id}
               >
-                <div className="flex bg-[#FFF9F3] my-5 rounded-[20px] lg:w-3/4 cursor-pointer w-[90%] shadow-md hover:shadow-xl transition-shadow duration-300">
+                <div className="flex bg-[#FFF9F3] my-5 rounded-[20px] sm:w-3/4 cursor-pointer w-[100%] shadow-md hover:shadow-xl transition-shadow duration-300">
                   <img
                     src={item.image}
                     alt=""

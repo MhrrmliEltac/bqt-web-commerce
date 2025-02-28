@@ -10,6 +10,7 @@ import box from "../../assets/box.svg";
 import { motion } from "framer-motion";
 import "./navbar.css";
 import Select from "../general/Select";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -17,6 +18,8 @@ const Navbar: React.FC = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
+
+  const [activeTab, setActiveTab] = useState("home");
 
   const items = {
     hidden: { opacity: 0, y: -100, transition: { duration: 1 } },
@@ -34,8 +37,12 @@ const Navbar: React.FC = () => {
     setShow(false);
   };
 
+  const handleActiveTab = (tab: string) => {
+    setActiveTab(tab);
+  };
+
   return (
-    <header className="w-[100%]">
+    <header className="w-[100%] relative">
       <motion.nav
         initial="hidden"
         animate="visible"
@@ -78,7 +85,6 @@ const Navbar: React.FC = () => {
               Sifarişlər
             </div>
           </Link>
-
           <Link to="/wishlist" className="relative group box-link">
             <motion.div whileHover={{ scale: 1.1 }}>
               <img src={favorite} alt="" />
@@ -111,6 +117,76 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
       </motion.nav>
+      <div className="max-sm:flex hidden justify-center items-center fixed bg-[#032C20C9] h-[50px] backdrop-blur-sm top-[90%] left-[15%] max-sm:w-[70%] rounded-[20px] px-2 py-2 z-50">
+        <div className="w-[70%] flex justify-between">
+          <Link to="/" className="group relative">
+            <Icon
+              icon="solar:home-smile-broken"
+              width="28px"
+              height="28px"
+              style={{ color: "#fff" }}
+              className={`cursor-pointer ${
+                activeTab === "home" && "opacity-50"
+              } transition-all duration-300 hover:opacity-50`}
+              onClick={() => handleActiveTab("home")}
+            />
+          </Link>
+          <Link to="/cart" className="group relative">
+            <Icon
+              icon="hugeicons:shopping-basket-02"
+              width="28px"
+              height="28px"
+              style={{ color: "#fff" }}
+              className={`cursor-pointer ${
+                activeTab === "basket" && "opacity-50"
+              } transition-all duration-300 hover:opacity-50`}
+              onClick={() => handleActiveTab("basket")}
+            />
+            <span className="absolute -top-1 -right-2 border-2 border-white rounded-full bg-[#2C4B42] flex justify-center items-center w-5 h-5 text-white">
+              1
+            </span>
+          </Link>
+          <Link to="/wishlist" className="group relative">
+            <Icon
+              icon="solar:heart-broken"
+              width="28px"
+              height="28px"
+              style={{ color: "#fff" }}
+              className={`cursor-pointer ${
+                activeTab === "favorite" && "opacity-50"
+              } transition-all duration-300 hover:opacity-50`}
+              onClick={() => handleActiveTab("favorite")}
+            />
+            <span className="absolute -top-1 -right-2 border-2 border-white rounded-full bg-[#2C4B42] flex justify-center items-center w-5 h-5 text-white">
+              1
+            </span>
+          </Link>
+          <Link to="/orders" className="group relative">
+            <Icon
+              icon="solar:box-broken"
+              width="28px"
+              height="28px"
+              style={{ color: "#fff" }}
+              className={`cursor-pointer ${
+                activeTab === "box" && "opacity-50"
+              } transition-all duration-300 hover:opacity-50`}
+              onClick={() => handleActiveTab("box")}
+            />
+          </Link>
+          <Link to="/profile" className="group relative">
+            <Icon
+              icon="solar:user-broken"
+              width="28px"
+              height="28px"
+              style={{ color: "#fff" }}
+              className={`cursor-pointer ${
+                activeTab === "user" && "opacity-50"
+              } transition-all duration-300 hover:opacity-50`}
+              onClick={() => handleActiveTab("user")}
+            />
+          </Link>
+        </div>
+      </div>
     </header>
   );
 };

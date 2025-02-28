@@ -51,8 +51,6 @@ const Order = () => {
     animate: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5 } },
   };
 
-  
-
   return (
     <motion.section
       variants={parentVariant}
@@ -61,10 +59,12 @@ const Order = () => {
     >
       {orderData.length > 0 && orderData ? (
         <>
-          <Heading name="Orders" />
+          <div className="flex max-sm:justify-center">
+            <Heading name="Orders" />
+          </div>
           <div className="md:grid md:grid-rows-1 md:grid-cols-2 flex w-full flex-col">
-            <div className="col-span-1">
-              <ul className="flex gap-16 text-lg my-5">
+            <div className="col-span-1 max-md:col-span-2">
+              <ul className="flex gap-16 text-xl my-5 max-sm:justify-around">
                 <li
                   className="cursor-pointer pb-2 transition-all duration-300"
                   style={{
@@ -76,7 +76,7 @@ const Order = () => {
                   }}
                   onClick={() => setActiveTab("active")}
                 >
-                  Active orders
+                  Active
                 </li>
                 <li
                   className="cursor-pointer pb-2 transition-all duration-300"
@@ -89,7 +89,7 @@ const Order = () => {
                   }}
                   onClick={() => setActiveTab("completed")}
                 >
-                  Completed orders
+                  Completed
                 </li>
               </ul>
 
@@ -113,7 +113,7 @@ const Order = () => {
                           <div className="flex justify-end">{order.price}₼</div>
                           <div>{order.date}</div>
                           <div className="flex justify-end">
-                            <button className="bg-[#2C4B42] text-white px-5 rounded-lg text-sm">
+                            <button className="bg-[#2C4B42] text-white px-5 text-sm rounded-lg">
                               {order.order_type}
                             </button>
                           </div>

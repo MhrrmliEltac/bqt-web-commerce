@@ -4,6 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import Profile from "./Profile";
 import { sectionVariant } from "./Profile";
 import MyAddress from "./MyAddress";
+import MyCards from "./MyCards";
+import ChangePassword from "./ChangePassword";
 
 const ProfileLayout = () => {
   const [tabArr, _] = useState<string[]>([
@@ -26,7 +28,9 @@ const ProfileLayout = () => {
       transition={{ duration: 0.5 }}
     >
       <div>
-        <Heading name="Profile" />
+        <div className="flex max-sm:justify-center">
+          <Heading name="Profile" />
+        </div>
         <div className="mt-10 flex flex-col gap-10 mb-10">
           <div className="w-full overflow-auto">
             <ul className="flex justify-between items-center gap-5 lg:w-[70%] md:w-[80%] text-lg overflow-auto max-sm:w-[550px]">
@@ -58,6 +62,10 @@ const ProfileLayout = () => {
                 <Profile />
               ) : activeTab === tabArr[1] ? (
                 <MyAddress />
+              ) : activeTab === tabArr[2] ? (
+                <MyCards />
+              ) : activeTab === tabArr[3] ? (
+                <ChangePassword />
               ) : null}
             </motion.div>
           </AnimatePresence>

@@ -22,8 +22,18 @@ const AddNewAddress: React.FC<ModalProps> = ({
   const addAddressNotify = () => {
     handleClose();
     headingName === "change"
-      ? toast.success("Change address")
-      : toast.success("Address added");
+      ? toast.success("Change address successfully", {
+          style: {
+            background: "#ECFDF3",
+            color: "#2C4B42",
+          },
+        })
+      : toast.success("Address add successfully", {
+          style: {
+            background: "#ECFDF3",
+            color: "#2C4B42",
+          },
+        });
   };
 
   return (

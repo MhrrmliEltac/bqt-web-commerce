@@ -25,7 +25,12 @@ const AddNewEmail: React.FC<ModalProps> = ({ open, handleClose }) => {
     if (regex.test(email)) {
       setOpenVerification(!openVerificaion);
     } else {
-      toast.error("Invalid email address");
+      toast.error("Invalid email address", {
+        style: {
+          background: "#F0F8FF",
+          color: "#2C4B42",
+        },
+      });
     }
   };
 

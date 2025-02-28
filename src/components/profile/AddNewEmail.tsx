@@ -21,7 +21,7 @@ const AddNewEmail: React.FC<ModalProps> = ({ open, handleClose }) => {
   const [email, setEmail] = useState<string>("");
 
   const handleOpenVerification = () => {
-    let regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
+    let regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,}");
     if (regex.test(email)) {
       setOpenVerification(!openVerificaion);
     } else {

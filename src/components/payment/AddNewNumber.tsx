@@ -51,7 +51,7 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
 
   const handleVerificationClose = () => {
     handleClose();
-    setTimeout(toggleVerification, 1000);
+    setTimeout(toggleVerification, 0);
   };
 
   const [inputValue, setInputValue] = useState<string>("+994 ");

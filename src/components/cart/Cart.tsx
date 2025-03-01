@@ -84,7 +84,9 @@ const Cart = () => {
     >
       {cartItem.length > 0 && cartItem ? (
         <>
-          <Heading name="Cart" />
+          <div className="flex max-sm:justify-center">
+            <Heading name="Cart" />
+          </div>
           <div className="grid grid-rows-1 md:grid-cols-2 gap-10 my-5 justify-between">
             <div className="md:col-span-1 col-span-2">
               <AnimatePresence>

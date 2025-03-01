@@ -5,6 +5,7 @@ import Heading from "../general/Heading";
 import { useState } from "react";
 import VerificationStep from "./VerificationStep";
 import ActionButtons from "./ActionButtons";
+import { toast } from "sonner";
 
 interface ModalProps {
   open: boolean;
@@ -38,11 +39,26 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
   const [openVerification, setOpenVerification] = useState(false);
   const [otp, setOtp] = useState("");
 
-  const toggleVerification = () => setOpenVerification((prev) => !prev);
+  const toggleVerification = () => {
+    if (inputValue.length === 5) {
+      toast.info("Enter phone number");
+    } else if (inputValue.length >= 5 && inputValue.length < 19) {
+      toast.error("Invalid phone number", {
+        style: {
+          background: "#F0F8FF",
+          color: "#2C4B42",
+        },
+      });
+    } else {
+      setOpenVerification((prev) => !prev);
+    }
+  };
 
   const handleVerificationClose = () => {
     handleClose();
-    setTimeout(toggleVerification, 1000);
+    setTimeout(() => {
+      setOpenVerification(!openVerification);
+    }, 1000);
   };
 
   const [inputValue, setInputValue] = useState<string>("+994 ");
@@ -91,7 +107,7 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
               otp={otp}
               setOtp={setOtp}
               text={`${inputValue} phone number`}
-              handleClose={handleClose}
+              handleClose={handleVerificationClose}
             />
           ) : (
             <>
@@ -110,6 +126,7 @@ const AddNewNumber: React.FC<ModalProps> = ({ open, handleClose }) => {
                 primaryText="Add"
                 secondaryAction={handleClose}
                 secondaryText="Cancel"
+                inputValueLength={inputValue.length}
               />
             </>
           )}

@@ -87,7 +87,12 @@ const ReviewSummary = () => {
         },
       });
       const successMessage = () =>
-        toast.success("Promo code applied successfully");
+        toast.success("Promo code applied successfully", {
+          style: {
+            background: "#ECFDF3",
+            color: "#2C4B42",
+          },
+        });
       successMessage();
     } else {
       setDiscount(0);

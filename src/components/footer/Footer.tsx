@@ -34,13 +34,13 @@ const socialMediaVariants = {
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#2C4B42] w-full h-[137px] flex items-center justify-center">
-      <div className="w-full flex justify-center items-center max-w-[1164px]">
-        <div className="flex h-min justify-between items-center w-[100%]">
+    <footer className="bg-[#2C4B42] w-full sm:h-[137px] h-[70px] flex items-center justify-center pt-2 pb-2">
+      <div className="w-full sm:flex hidden justify-center items-center px-6 lg:max-w-[1164px]">
+        <div className="flex h-min justify-between items-center gap-5 max-sm:flex-wrap w-[100%]">
           <div>
             <img src={logo} alt="" width={40} height={60} />
           </div>
-          <div className="flex items-center justify-end gap-4 w-[20%]">
+          <div className="flex items-center sm:justify-end justify-between gap-4 mx-auto">
             {socialMedia?.map((social: SocialMedia) => (
               <motion.div
                 className="bg-white flex justify-center items-center rounded-full w-[40px] h-[40px] cursor-pointer"
@@ -54,9 +54,9 @@ const Footer: React.FC = () => {
               </motion.div>
             ))}
           </div>
-          <div className="bg-white flex items-center justify-center gap-2 py-2 px-4 rounded-full">
-            <img src={phone} alt="" />
-            <p>+994504800800</p>
+          <div className="bg-white flex items-center justify-center gap-2 py-2 px-4 rounded-full h-12">
+            <img src={phone} alt="" width={20} />
+            <p className="sm:text-sm">+994504800800</p>
           </div>
         </div>
       </div>

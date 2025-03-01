@@ -51,7 +51,9 @@ const Favorite = () => {
     >
       {flowerData.length > 0 && flowerData ? (
         <>
-          <Heading name="Favourites" />
+          <div className="flex max-sm:justify-center">
+            <Heading name="Favourites" />
+          </div>
           <div className="grid grid-rows-1 grid-cols-4 gap-7 my-5">
             {flowerData?.map((item: flowerType) => (
               <motion.div

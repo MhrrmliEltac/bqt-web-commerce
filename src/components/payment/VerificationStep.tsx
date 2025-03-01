@@ -37,6 +37,7 @@ const VerificationStep = ({
         primaryText="Verify"
         secondaryAction={handleClose}
         secondaryText="Cancel"
+        inputValueLength={4}
       />
       <Box
         sx={{

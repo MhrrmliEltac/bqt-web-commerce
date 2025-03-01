@@ -118,7 +118,7 @@ const Navbar: React.FC = () => {
         </div>
       </motion.nav>
       <div className="max-sm:flex hidden justify-center items-center fixed bg-[#032C20C9] h-[50px] backdrop-blur-sm top-[90%] left-[15%] max-sm:w-[70%] rounded-[20px] px-2 py-2 z-50">
-        <div className="w-[70%] flex justify-between">
+        <div className="w-[100%] flex justify-between">
           <Link to="/" className="group relative">
             <Icon
               icon="solar:home-smile-broken"

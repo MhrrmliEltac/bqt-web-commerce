@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import flower from "../../assets/flower.svg";
-import cake from "../../assets/cake.svg";
-import chocolate from "../../assets/chocolate.svg";
-import plant from "../../assets/plant.svg";
+import flower from "/flower.svg";
+import cake from "/cake.svg";
+import chocolate from "/chocolate.svg";
+import plant from "/plant.svg";
 
 type cardItemType = {
   id: number;
@@ -17,7 +17,7 @@ const cardItem: cardItemType[] = [
     id: 1,
     title: "Flowers & Bouquets",
     image: flower,
-    url: "/flowers",
+    url: "/flower",
   },
   {
     id: 2,
@@ -78,14 +78,13 @@ const HomeCard = () => {
       initial="hidden"
       animate="visible"
     >
-      {cardItem.map((item: cardItemType) => (
-        <motion.div variants={childVariant}>
+      {cardItem?.map((item: cardItemType) => (
+        <motion.div variants={childVariant} key={item.id}>
           <motion.div
             className="relative duration-300 shadow-lg hover:shadow-2xl rounded-[30px] lg:aspect-[315/380] aspect-[950/380] overflow-hidden cursor-pointer"
             onClick={() => navigateTo(item.url)}
             initial="initial"
             whileHover="hover"
-            key={item.id}
           >
             <div className="absolute inset-0">
               <motion.img

@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import Verification from "./Verification";

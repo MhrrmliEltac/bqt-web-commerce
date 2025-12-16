@@ -4,7 +4,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import Button from "./Button";
 import "../home/home.css";
-import { motion } from "framer-motion";
 
 interface ModalProps {
   open: boolean;
@@ -18,7 +17,15 @@ const BlurryDialog = experimentalStyled(Dialog)<DialogProps>(({}) => ({
 export default function BasicDialog({ handleClose, open }: ModalProps) {
   return (
     <BlurryDialog open={open} onClose={handleClose}>
-      <Box sx={{ padding: "20px", width: "440px" }}>
+      <Box
+        sx={{
+          padding: "20px",
+          width: {
+            xs: "100%",
+            md: 440,
+          },
+        }}
+      >
         <DialogContent
           sx={{ display: "flex", flexDirection: "column", gap: "40px" }}
         >
